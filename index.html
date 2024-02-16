@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Food Ordering System</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+		</style>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+		<link rel="stylesheet" href="styles/main.css" />
+		<link rel="stylesheet" href="styles/beer.css" />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="#/">Home</a></li>
+					<li><a href="#/menu">Menu</a></li>
+					<li><a href="#/about">About</a></li>
+					<li><a href="#/contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div id="app">
+			<!-- Views will be rendered here -->
+		</div>
+		<footer>
+			<p>&copy; Flying Dutchman Ordering System</p>
+		</footer>
+		<script type="module">
+			import { initRouter } from './router.js';
+			initRouter();
+		</script>
+	</body>
+</html>

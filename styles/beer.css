@@ -1,0 +1,29 @@
+:root {
+	--primary-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.beers {
+	padding: 20px;
+}
+.beers-title {
+	text-align: center;
+}
+.beers-list {
+	display: flex;
+	justify-content: left;
+	flex-wrap: wrap;
+}
+
+.beer-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(33% - 20px);
+	margin: 10px;
+	padding: 20px;
+	box-shadow: var(--primary-box-shadow);
+	text-align: center;
+}
+.beer-card i {
+	color: #2d9f21;
+}

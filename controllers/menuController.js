@@ -1,4 +1,4 @@
-import Beer from '../models/bearModel.js';
+import Beer from '../models/beerModel.js';
 import { renderMenu } from '../views/menuView.js';
 
 export async function MenuController() {

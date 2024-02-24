@@ -6,7 +6,7 @@ export function renderHome(data) {
 
 	appContainer.innerHTML = `
 		<div class="row">
-		
+	
 			<div id="menu-container" class="col-9">${menuContainer(data)}</div>
 			<div id="order-container" class="col-3">${orderContainer(data)}</div>
 		</div>

@@ -1,10 +1,17 @@
+import LoginModel from '../models/loginModel.js';
 import { renderLogin } from '../views/loginView.js';
 
 export async function loginController() {
-	let loginModel = new login();
-	await loginModel.initialize();
+	let loginModel = new LoginModel();
+	function login() {
+		let loginPage = loginModel.login();
+	}
 
-	let loginPage = loginModel.login();
+	renderLogin();
 
-	renderLogin({ login: loginPage });
+	const loginButton = document.getElementById('login-form');
+	loginButton.addEventListener('submit', (e) => {
+		e.preventDefault();
+		loginModel.login();
+	});
 }

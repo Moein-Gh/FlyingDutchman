@@ -1,3 +1,61 @@
 .menu-container {
 	box-shadow: var(--primary-box-shadow);
 }
+
+/* Alan ↓ */
+.menu-page-container {
+	display: flex;
+}
+
+.menu-book {
+	width: 70%;
+}
+
+
+.checkout-box{
+	background-color: rgb(103, 105, 105);
+	color: rgb(0, 0, 0);
+	padding: 2em;
+	width: 30%;
+}
+
+.checkout-box-title{
+	display: flex;
+	justify-content: space-between;
+}
+
+.text-left {
+	text-align: left;
+	
+}
+.text-right {
+	text-align: right;
+}
+
+.checkbox-table-container {
+	background-color: aquamarine;
+	height: 70%;
+	padding: 1em;
+}
+
+.checkbox-table table{
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	background-color: lightblue;
+	
+}
+
+.checkbox-table th, .order-box-table td{
+	border: 1px solid black;
+	color: black;
+	text-align: center;
+    
+}
+
+.checkbox-submit {
+	display: flex;
+	justify-content: flex-end;
+}
+
+/* Alan ↑ */

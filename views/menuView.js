@@ -1,11 +1,31 @@
-import { beerList } from '../components/beerComponents.js';
+
+import { checkoutBox } from '../components/checkoutBoxComponent.js';
+import { menuBook } from '../components/menubookComponent.js';
+
 
 export function renderMenu(data) {
 	const appContainer = document.getElementById('app');
 
 	appContainer.innerHTML = `
-		<div class="container">
-			${beerList(data?.beers)}
+	<div class=menu-page-container>
+		
+		<div class="menu-book">
+			${menuBook(data)}
 		</div>
+
+
+		<div class="checkout-box">
+			${checkoutBox(data?.beers)}
+		</div>
+
+		
+
+
+
+
+
+
+
+	</div>
 	`;
 }

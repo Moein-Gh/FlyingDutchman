@@ -1,16 +1,12 @@
-import { loadJSON } from '../utils.js';
+import { getDataFromSessionStorage, loadJSON } from '../utils.js';
 
 export default class Beer {
 	constructor() {
-		this.src =
-			'../Dutchman Files/DBFilesJSON/DBFilesJSON/dutchman_table_sbl_beer.json';
-		this.data = null;
-
-		this.initialize();
+		this.key = 'beers';
 	}
 
 	async initialize() {
-		this.data = await loadJSON(this.src);
+		this.data = await getDataFromSessionStorage(this.key);
 	}
 
 	getBeer(nr) {

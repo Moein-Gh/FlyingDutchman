@@ -1,0 +1,31 @@
+{
+  "order_id": "12345",
+  "customer_id": "12123",
+  "table_id": "12",
+  "split_bill": false,
+  "items": [
+    {
+      "product_id": "6789",
+      "quantity": 2,
+      "price_per_unit": 10.99,
+      "paid": true
+    },
+    {
+      "product_id": "6789",
+      "quantity": 2,
+      "price_per_unit": 10.99,
+      "paid": true
+    },
+    {
+      "product_id": "6789",
+      "quantity": 2,
+      "price_per_unit": 10.99,
+      "paid": true
+    }
+  ],
+  "total": 51.97,
+  "discount": 0,
+  "payment_method": "credit_card",
+  "payment_status": "paid",
+  "status": "standard"
+}

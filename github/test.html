@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Dutchman Pub Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('images/pub.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+        h2 {
+            color: white; /* Changed color to white */
+        }
+        img {
+            max-width: 60%;
+            height: auto;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 14px 28px;
+            cursor: pointer;
+        }
+        p {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white; /* Changed color to white */
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button.checkout-button {
+            background-color: #28a745;
+            padding: 14px 28px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flying Dutchman Pub</h1>
+    <h2>Please sign in to your existing account</h2>
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <a href="/forgot-password">Forgot password?</a>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    <p>OR</p>
+    <button class="checkout-button" onclick="location.href='/checkout-without-login'">Checkout without login</button>
+</body>
+</html>

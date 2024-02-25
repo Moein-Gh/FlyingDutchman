@@ -3,9 +3,6 @@ import { loadJSON } from './utils.js';
 let staticAddress = './Dutchman Files/DBFilesJSON/DBFilesJSON/';
 
 export async function loadDB() {
-	console.log('-------------------');
-	console.log('Loading DB');
-	console.log('-------------------');
 	if (sessionStorage.getItem('beers') == null) {
 		let beers = await loadJSON(staticAddress + 'dutchman_table_sbl_beer.json');
 		let first100 = beers.slice(0, 100);
@@ -15,5 +12,12 @@ export async function loadDB() {
 	if (sessionStorage.getItem('users') == null) {
 		let users = await loadJSON(staticAddress + 'dutchman_table_users.json');
 		sessionStorage.setItem('users', JSON.stringify(users));
+	}
+	if (sessionStorage.getItem('orders') == null) {
+		sessionStorage.setItem('orders', JSON.stringify([]));
+	}
+	if (sessionStorage.getItem('tables') == null) {
+		let tables = await loadJSON(staticAddress + 'dutchman_table_tables.json');
+		sessionStorage.setItem('tables', JSON.stringify(tables));
 	}
 }

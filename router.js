@@ -2,12 +2,14 @@ import { HomeController } from './controllers/homeController.js';
 import { AboutController } from './controllers/aboutController.js';
 import { MenuController } from './controllers/menuController.js';
 import { loginController } from './controllers/loginController.js';
+import { StockController } from './controllers/stockController.js';
 
 const routes = {
 	'/': HomeController,
 	'/about': AboutController,
 	'/menu': MenuController,
 	'/login': loginController,
+	'/stock': StockController,
 };
 
 export function handleRouteChange() {

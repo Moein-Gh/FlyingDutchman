@@ -1,9 +1,13 @@
 export let beerCard = (beer) => {
 	return `
 		<div class="beer-card">
-			<i class="material-symbols-outlined"> sports_bar </i>
-			<h3 class="beer-name">${beer.namn}</h3>
-			<p>${beer.prisinklmoms}</p>
+			<img src="img/Heineken.jpg" style="width: 50%" alt="beverage pic" width="45%">
+			<div style="width: 50%">
+				<i class="material-symbols-outlined"> sports_bar </i>
+				<div class="beer-name">${beer.namn}</div>
+				<div class="beer-price">${beer.prisinklmoms}</div>
+				<button>+Add</button>
+			</div>
 		</div>
 	`;
 };
@@ -14,7 +18,7 @@ export let beerList = (beers) => {
 	return `
 		<div class="beers">
 			<h1 class=beers-title>Beers</h1>
-      <br>
+      	<br>
 			<div class="beers-list">${list}</div>
 		</div>
 	`;

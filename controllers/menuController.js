@@ -5,7 +5,7 @@ export async function MenuController() {
 	let beerModel = new Beer();
 	await beerModel.initialize();
 
-	let MenuPageBeers = beerModel.getBeers({ limit: 20 });
+	let MenuPageBeers = beerModel.getBeers({ limit: 10 });
 
 	renderMenu({ beers: MenuPageBeers });
 }

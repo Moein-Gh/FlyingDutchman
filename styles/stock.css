@@ -1,0 +1,28 @@
+.stockTable-container{
+    width: 100%;
+    height: 75vh;
+    border-radius: 1em;
+    background-color: white;
+    overflow:auto;
+    padding: 2em;
+}
+
+.stockTable-container table{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    border-radius: 1em;
+    
+
+}
+
+.stockTable-container tr {
+    height: 3em;
+}
+
+.stockTable-container th{
+    height:3em;
+}
+.stockTable-container td{
+    height:2em;
+}
+

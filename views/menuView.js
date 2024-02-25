@@ -18,14 +18,6 @@ export function renderMenu(data) {
 			${checkoutBox(data?.beers)}
 		</div>
 
-		
-
-
-
-
-
-
-
 	</div>
 	`;
 }

@@ -6,21 +6,17 @@
 //Alan
 export let checkoutBox = (orderedList) => {
     let row = '';
-    let counter = 1;
-
     orderedList.forEach(item => {
         row += '<tr>'
-        row += '<td>' + counter + '</td>';
-        row += '<td>' + item.namn + '</td>';
-        row += '<td>' + 'Qty' + '</td>';
+        row += '<td style="font-weight:bold;">' + item.namn + '</td>';
+        row += '<td>' + '<div style="display: flex; flex:none"> <button style=" flex:none; width:30%; border-radius: 5px;">+</button><h5 style=" flex:none; width:40%; text-align: center">1</h5><button style=" flex:none; width:30%; border-radius: 5px;">-</button></div>' + '</td>';
         row += '<td>' + item.prisinklmoms + '</td>';
         row += '</tr>';
-        counter++;
     });
 
     return `
-        <div class="checkout-box-title">
-            <div class="left"><h1>Order</h1></div>
+        <div class="checkout-box-title-container">
+            <h1>Order</h1>
             <button>Clear all</button>
         </div>
         <div class="checkbox-table-container">
@@ -28,33 +24,29 @@ export let checkoutBox = (orderedList) => {
             <div class="checkbox-table">
                 <table>
                     <colgroup style="width: 100%">
-                        <col style=" width: 15% ">
-                        <col style="width: 55% ">
-                        <col style="width: 15% ">
+                        <col style="width: 60% ">
+                        <col style="width: 25% ">
                         <col style="width: 15% ">
                     </colgroup>
                     <tr>
-                        <th>No.</th>
-                        <th>Item</th>
+                        <th style="text-align: left">Item</th>
                         <th>Qty</th>
                         <th>$$</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>dummy</td>
-                        <td>1</td>
-                        <td>10</td>
                     </tr>
                     ${row}				
                 </table>
             </div>
         </div>
 
-        <h1 class="checkbox-submit">Total Price: 30</h1>
-
-        <div class="checkbox-submit">
-            <button >Submit Order</button>
+        <hr>
+        <div class="checkout-box-bottom">
+            <h1>Total Price: 30</h1>
+            <h3>Discount: 10%</h3>
+            <div class="checkbox-submit">
+                <button>Submit Order</button>
+            </div>
         </div>
+
 
         </div>
 

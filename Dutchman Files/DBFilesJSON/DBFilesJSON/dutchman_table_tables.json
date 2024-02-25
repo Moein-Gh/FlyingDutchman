@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"status": "available"
+	},
+	{
+		"id": 2,
+		"status": "occupied"
+	},
+	{
+		"id": 3,
+		"status": "reserved"
+	},
+	{
+		"id": 4,
+		"status": "dirty"
+	},
+	{
+		"id": 5,
+		"status": "available"
+	}
+]

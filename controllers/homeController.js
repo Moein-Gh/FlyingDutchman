@@ -11,7 +11,5 @@ export async function HomeController() {
 	let orderModel = new Order();
 	await orderModel.initialize();
 
-	let orders = orderModel.getOrders();
-
-	renderHome({ beers: MenuPageBeers, orders: orders });
+	renderHome({ beers: MenuPageBeers });
 }

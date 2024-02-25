@@ -1,5 +1,6 @@
 {
 	"liveServer.settings.multiRootWorkspaceName": "Project",
 	"liveServer.settings.file": "index.html",
+	"liveServer.settings.port": 3001,
 	
 }

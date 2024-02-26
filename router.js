@@ -1,14 +1,12 @@
 import { HomeController } from './controllers/homeController.js';
-import { AboutController } from './controllers/aboutController.js';
 import { MenuController } from './controllers/menuController.js';
-import { loginController } from './controllers/loginController.js';
+import { userController } from './controllers/userController.js';
 import { StockController } from './controllers/stockController.js';
 
 const routes = {
 	'/': HomeController,
-	'/about': AboutController,
 	'/menu': MenuController,
-	'/login': loginController,
+	'/login': userController,
 	'/stock': StockController,
 };
 

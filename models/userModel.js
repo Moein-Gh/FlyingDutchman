@@ -1,6 +1,6 @@
 import { getDataFromSessionStorage } from '../utils.js';
 
-export default class User {
+export default class UserModel {
 	constructor() {
 		this.key = 'users';
 	}

@@ -1,17 +1,18 @@
-import LoginModel from '../models/loginModel.js';
+import UserModel from '../models/userModel.js';
 import { renderLogin } from '../views/loginView.js';
 
-export async function loginController() {
-	let loginModel = new LoginModel();
-	function login() {
-		let loginPage = loginModel.login();
-	}
+export async function userController() {
+	// let userModel = new userModel();
+
+	// function login() {
+	// 	let loginPage = userModel.login();
+	// }
 
 	renderLogin();
 
-	const loginButton = document.getElementById('login-form');
-	loginButton.addEventListener('submit', (e) => {
-		e.preventDefault();
-		loginModel.login();
-	});
+	// const loginButton = document.getElementById('login-form');
+	// loginButton.addEventListener('submit', (e) => {
+	// 	e.preventDefault();
+	// 	userModel.login();
+	// });
 }

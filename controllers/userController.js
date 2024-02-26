@@ -1,4 +1,4 @@
-import LoginModel from '../models/loginModel.js';
+import LoginModel from '../models/userModel.js';
 import { renderLogin } from '../views/loginView.js';
 
 export async function loginController() {
@@ -9,9 +9,22 @@ export async function loginController() {
 
 	renderLogin();
 
-	const loginButton = document.getElementById('login-form');
+	const loginButton = document.getElementById('login-button');
+	const checkouwithoutloginButton = document.getElementById('checkout-without-login-button');
+	const checkoutbutton = document.getElementById('checkout-button');
+
 	loginButton.addEventListener('submit', (e) => {
 		e.preventDefault();
-		loginModel.login();
+		if(loginModel.login(e.target.username.value, e.target.password.value)){
+			location.href = '/menu';
+		
+		};
+	});
+//send to the menu page, no user is necessary for this button.	
+	checkouwithoutloginButton.addEventListener('click', (e) => {
+		location.href = '/menu';
+	});
+	checkoutbutton.addEventListener('click', (e) => {
+		location.href = '/menu';
 	});
 }

@@ -8,13 +8,13 @@ export default class UserModel {
 	async initialize() {
 		this.data = await getDataFromSessionStorage(this.key);
 	}
+
 	getUser(nr) {
 		if (!this.data) {
 			return null;
 		}
 		return this.data.find((beer) => beer.nr === nr);
 	}
-
 	getUsers(config = {}) {
 		if (!this.data) {
 			return [];
@@ -53,5 +53,13 @@ export default class UserModel {
 		} else {
 			return 2; //user
 		}
+	}
+	changeRole(username, role) {
+		const user = this.data.find((user) => user.username === username);
+		if (!user) {
+			return false;
+		}
+		user.credentials = role;
+		return true;
 	}
 }

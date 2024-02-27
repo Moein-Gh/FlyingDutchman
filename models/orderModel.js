@@ -275,4 +275,51 @@ export default class Order {
 
 		return true;
 	}
+
+	async removeOrder(order_id) {
+		// 1. Find the order by its ID
+		let orderIndex = this.data.findIndex(
+			(order) => order.order_id === order_id
+		);
+
+		// 2. Check if the order exists
+		if (orderIndex === -1) {
+			return 'Order not found';
+		}
+
+		// 3. Remove the order
+		this.data.splice(orderIndex, 1);
+
+		// 4. Update session storage to reflect the change
+		setDataInSessionStorage(this.key, this.data);
+
+		return true;
+	}
+
+	async payWithCredit(order_id, user_id) {
+		let orderIndex = this.data.findIndex((order) => order.id === order_id);
+		let order = this.getOrder(order_id);
+		if (!order) {
+			return 'Order not found';
+		}
+		let users = getDataFromSessionStorage('users');
+
+		let userIndex = users.findIndex((user) => user.id === user_id);
+		let user = users[userIndex];
+		if (!user) {
+			return 'User not found';
+		}
+
+		let total = order.items.reduce(a, b, a + b.price_per_unit * b.quantity, 0);
+		if (user.credit < total) {
+			return 'Not enough credit';
+		}
+		user.credit -= order.total;
+		users[userIndex] = user;
+		setDataInSessionStorage('users', users);
+		order.paymentStatus = 'paid';
+		this.data[orderIndex] = order;
+		setDataInSessionStorage(this.key, this.data);
+		return true;
+	}
 }

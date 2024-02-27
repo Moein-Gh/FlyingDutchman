@@ -8,7 +8,6 @@ export default class UserModel {
 	async initialize() {
 		this.data = await getDataFromSessionStorage(this.key);
 	}
-//Fix, should look for user id, not beer id.
 	getUser(nr) {
 		if (!this.data) {
 			return null;
@@ -36,19 +35,23 @@ export default class UserModel {
 		return user.password === password;
 	}
 	login(username, password) {
-		if (!this.data) {//if there is no data
+		if (!this.data) {
+			//if there is no data
 			return false;
 		}
 		const user = this.data.find((user) => user.username === username);
-		if (!user) {//if user is not found
+		if (!user) {
+			//if user is not found
 			return false;
 		}
 
-		if(this.data.find((user) => user.credentials === 0) && this.data.find((user) => user.password === password)){
-			return 1;//admin
-		}
-		else{
-			return 2;//user
+		if (
+			this.data.find((user) => user.credentials === 0) &&
+			this.data.find((user) => user.password === password)
+		) {
+			return 1; //admin
+		} else {
+			return 2; //user
 		}
 	}
 }

@@ -20,4 +20,10 @@ export async function loadDB() {
 		let tables = await loadJSON(staticAddress + 'dutchman_table_tables.json');
 		sessionStorage.setItem('tables', JSON.stringify(tables));
 	}
+	if (sessionStorage.getItem('notifications') == null) {
+		let notifications = await loadJSON(
+			staticAddress + 'dutchman_table_notifications.json'
+		);
+		sessionStorage.setItem('notifications', JSON.stringify(notifications));
+	}
 }

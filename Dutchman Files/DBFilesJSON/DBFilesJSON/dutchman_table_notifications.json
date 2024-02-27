@@ -1,0 +1,20 @@
+[
+	{
+		"id": "1",
+		"order_id": "123456",
+		"type": "low_stock",
+		"userType": "staff",
+		"message": "Low stock alert for product ",
+		"productId": "123456",
+		"notificationDate": "1709038228",
+		"status": "unread"
+	},
+	{
+		"id": "2",
+		"type": "security",
+		"userType": "security",
+		"message": "Security alert",
+		"notificationDate": "1709038218",
+		"status": "unread"
+	}
+]

@@ -231,4 +231,48 @@ export default class Order {
 
 		return `Order status updated to '${newStatus}' for order ${order_id}`;
 	}
+
+	async getItemOrderStock(item_id) {
+		let items = getDataFromSessionStorage('items');
+
+		let itemObject = items.find((item) => item.id === item_id);
+		if (!itemObject) {
+			return 'Item not found';
+		}
+		return itemObject.stock;
+	}
+
+	async submitOrder(order_id) {
+		// 1. Find the order by its ID
+		let order = this.data.find((order) => order.id === order_id);
+
+		let orderItems = order.items;
+
+		let notifications = getDataFromSessionStorage('notifications');
+		for (item in orderItems) {
+			let itemStock = this.getItemOrderStock(item.id);
+			if (itemStock < 5) {
+				notifications.push({
+					id: notifications.length + 1,
+					order_id: order_id,
+					type: 'low_stock',
+					userType: 'staff',
+					message: 'Low stock alert for product',
+					productId: item.id,
+					notificationDate: Date.now(),
+					status: 'unread',
+				});
+			}
+		}
+
+		let orderIndex = this.data.findIndex((order) => order.id === order_id);
+
+		// 3. Update the order status
+		this.data[orderIndex].status = 'submitted';
+
+		// 4. Update session storage to reflect the change
+		setDataInSessionStorage(this.key, this.data);
+
+		return true;
+	}
 }

@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 
 </html>
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/menu.css" />
-    <link rel="stylesheet" href="styles/beer.css" />
-    <link rel="stylesheet" href="styles/home.css" />
-    <link rel="stylesheet" href="styles/order.css" />
-    <link rel="stylesheet" href="styles/stock.css" />
-	</head>
-	<body>
-		<header>
-			<nav>
-				<ul>
+<link rel="stylesheet" href="styles/main.css" />
+<link rel="stylesheet" href="styles/menu.css" />
+<link rel="stylesheet" href="styles/beer.css" />
+<link rel="stylesheet" href="styles/home.css" />
+<link rel="stylesheet" href="styles/order.css" />
+<link rel="stylesheet" href="styles/stock.css" />
+<link rel="stylesheet" href="styles/profile.css">
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul>
 				<li><a href="#/">Home</a></li>
 				<li><a href="#/menu">Menu</a></li>
 				<li><a href="#/stock">Stock</a></li>
 				<li><a href="#/login">Login</a></li>
-				</ul>
-			</nav>
-		</header>
-		<div id="app">
-			<!-- Views will be rendered here -->
-		</div>
-		<footer>
-			<p>&copy; Flying Dutchman Ordering System</p>
-		</footer>
+				<li><a href="#/profile">profile</a></li> <!--Sheng-Yu Wu-->
+			</ul>
+		</nav>
+	</header>
+	<div id="app">
+		<!-- Views will be rendered here -->
+	</div>
+	<footer>
+		<p>&copy; Flying Dutchman Ordering System</p>
+	</footer>
 
-		<script type="module">
-			import { initRouter } from './router.js';
-			import { loadDB } from './loader.js';
-			loadDB();
-			initRouter();
-		</script>
-		<script type="module">
-			import { loadDB } from './loader.js';
-			loadDB();
-		</script>
-	</body>
+	<script type="module">
+		import { initRouter } from './router.js';
+		import { loadDB } from './loader.js';
+		loadDB();
+		initRouter();
+	</script>
+	<script type="module">
+		import { loadDB } from './loader.js';
+		loadDB();
+	</script>
+</body>
+
 </html>

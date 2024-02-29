@@ -2,12 +2,14 @@ import { HomeController } from './controllers/homeController.js';
 import { MenuController } from './controllers/menuController.js';
 import { userController } from './controllers/userController.js';
 import { StockController } from './controllers/stockController.js';
+import { profileController } from './controllers/profileController.js';
 
 const routes = {
 	'/': HomeController,
 	'/menu': MenuController,
 	'/login': userController,
-	'/stock': StockController,
+	'/stock': StockController, //Sheng-Yu Wu
+	'/profile': profileController, //Sheng-Yu Wu
 };
 
 export function handleRouteChange() {

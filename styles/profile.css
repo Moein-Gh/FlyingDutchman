@@ -1,0 +1,48 @@
+/* Sheng-Yu Wu */
+
+
+.Alan-profilePageSection {
+    background-color: gray;
+    height: 100vh;
+    background-position-x: center;
+    background-size: cover;
+    display:flex;
+    justify-content:center;
+}
+
+
+.Alan-profileTitle {
+    text-align: center;
+}
+
+.Alan-profileImg-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 40vh;
+    height: 40vh;
+    
+    
+    background-color: rgb(59, 59, 59);
+    
+    margin: 5vh;
+
+}
+
+.Alan-profileImage {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+
+.Alan-profileTextRow {
+    display: flex;
+}
+
+.Alan-profileTextContent {
+    flex: none;
+    width: 50%;
+    background-color: aqua;
+    margin: 1vh;
+}

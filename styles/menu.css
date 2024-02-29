@@ -4,7 +4,7 @@
 
 /* Alan ↓ */
 .menu-page-container {
-	display: flex;	
+	display: flex;
 	height: 100%;
 }
 
@@ -13,21 +13,15 @@
 	background-color: rgb(212, 206, 218);
 	padding: 2%;
 	border-radius: 2em 0 0 2em;
-	
-	
 }
-
 
 .menu-category-container ul {
 	display: flex;
 	justify-content: left;
 	margin: 0px;
-	
-
-
 }
 
-.menu-category-container li{
+.menu-category-container li {
 	display: inline-block;
 	background-color: rgb(255, 255, 255);
 	margin-right: 0.1em;
@@ -41,12 +35,9 @@
 	padding: 0.6em;
 	vertical-align: text-bottom;
 	box-shadow: 5px 0px 1px 0px #888888;
-	
-
 }
-.menu-category-container li:hover{
+.menu-category-container li:hover {
 	background-color: rgb(220, 207, 207);
-
 }
 
 .menu-content-container {
@@ -55,25 +46,16 @@
 	box-shadow: 5px 0px 1px 1px #888888;
 }
 
-
-
-
-
-
-
-
-
-.checkout-box{
+.checkout-box {
 	background-color: rgb(127, 129, 129);
 	color: rgb(0, 0, 0);
 	padding: 2em;
 	width: 30%;
 	height: 100%;
 	border-radius: 0 2em 2em 0;
-	
 }
 
-.checkout-box-title-container{
+.checkout-box-title-container {
 	display: flex;
 	justify-content: space-between;
 	height: 8%;
@@ -97,7 +79,6 @@
 
 .text-left {
 	text-align: left;
-	
 }
 .text-right {
 	text-align: right;
@@ -111,7 +92,7 @@
 	overflow: auto;
 }
 
-.checkbox-table table{
+.checkbox-table table {
 	table-layout: fixed;
 	width: 100%;
 	height: 90%;
@@ -120,40 +101,31 @@
 	font-size: larger;
 	font-weight: bolder;
 	overflow: scroll;
-
 }
 
-
-
-.checkbox-table th{
+.checkbox-table th {
 	color: black;
 	text-align: center;
 	height: 2em;
 	font-size: larger;
 	font-weight: bold;
 	border-style: outset;
-	
 }
 
 .checkbox-table td {
-	font-size:large;
+	font-size: large;
 	padding: 1px;
 	margin: 5px;
 	height: 3em;
-	
 }
 
-
-
-
-.checkout-box-bottom{
+.checkout-box-bottom {
 	padding: 5%;
 	height: 15%;
 	background-color: white;
 	border-radius: 0 0 2em 2em;
 	box-shadow: 5px 3px 1px 1px #605d5d;
 }
-
 
 .checkbox-submit {
 	display: flex;

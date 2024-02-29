@@ -2,10 +2,7 @@ import { beerList } from './beerComponents.js';
 
 // Alan
 export let menuBook = (data) => {
-
-
-
-    return `
+	return `
         <div class="menu-category-container">
             <ul>
                 <li class="all">All</li>
@@ -24,19 +21,12 @@ export let menuBook = (data) => {
 	`;
 };
 
-
-
-
 // export function Test() {
 
 //     const menuContainer = document.getElementById('menuBookPages');
 //     console.log('Test1')
 //     menuContainer.innerHTML = `<div>TTTTTTEST</div> `
 // };
-
-
-
-
 
 // export function switchToFood(data) {
 //     const appContainer = document.getElementById('menuBookPages');
@@ -48,8 +38,6 @@ export let menuBook = (data) => {
 //     `
 // };
 
-
-
 // export function switchToBeverage(data) {
 //     const appContainer = document.getElementById('menuBookPages');
 
@@ -60,7 +48,6 @@ export let menuBook = (data) => {
 //     `
 // };
 
-
 // export let beverageMenu = (data) => {
 //     return `
 //         <div class="container">
@@ -68,4 +55,3 @@ export let menuBook = (data) => {
 //         </div>
 // 	`;
 // };
-

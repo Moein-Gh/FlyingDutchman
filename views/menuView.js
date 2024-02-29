@@ -1,7 +1,5 @@
-
 import { checkoutBox } from '../components/checkoutBoxComponent.js';
 import { menuBook } from '../components/menubookComponent.js';
-
 
 export function renderMenu(data) {
 	const appContainer = document.getElementById('app');

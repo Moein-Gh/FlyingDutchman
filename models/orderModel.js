@@ -16,7 +16,8 @@ export default class Order {
 		if (!this.data) {
 			return null;
 		}
-		return this.data.find((order) => order.id === order_id);
+
+		return this.data.find((order) => order.id == order_id);
 	}
 
 	getOrders(config = {}) {
@@ -29,7 +30,12 @@ export default class Order {
 		}
 	}
 
-	async createOrder({ userId }) {
+	getCurrentOrder() {
+		let order =
+			getDataFromSessionStorage('currentOrder') || this.createOrder({});
+		return order;
+	}
+	createOrder({ userId }) {
 		if (userId) {
 			let users = sessionStorage.getItem('users');
 			let user = JSON.parse(users).find((user) => user_id === userId);
@@ -61,60 +67,93 @@ export default class Order {
 			date: Date.now(),
 			number: this.data.length + 1,
 			discount: 0,
+			total: 0,
 			paymentStatus: 'not_paid',
 			status: 'not_submited',
 			allowSplit: false,
 			tableNumber: table?.id,
 		};
+		setDataInSessionStorage('currentOrder', order);
 
 		this.data.push(order);
 		setDataInSessionStorage(this.key, this.data);
+
 		return order;
 	}
 
-	async addItemToOrder({ order_id, product_id, quantity = 1 }) {
+	clearOrder(order_id) {
 		// 1. Get order
 		let order = this.getOrder(order_id);
+		// 2. Check if order exists
 		if (!order) {
 			return 'Order not found';
 		}
-		// 2. Get beer
-		let beers = getDataFromSessionStorage('beers');
-		// 3. Check if beer exists
-		let beer = beers.find((beer) => beer.id === product_id);
-		if (!beer) {
-			return 'Beer not found';
-		}
-		// 4. Check if quantity is available
-		if (quantity > beer.stock) {
-			return 'Not enough stock';
-		}
-		// 5. Add item to order
-		let orderIndex = this.data.findIndex(
-			(order) => order.order_id === order_id
-		);
-		this.data[orderIndex].items.push({
-			product_id: product_id,
-			quantity,
-			price_per_unit: beer.price,
-			paid: false,
-		});
-
-		// Calculate new total
-		let newItemTotal = quantity * beer.price;
-		this.data[orderIndex].total += newItemTotal;
-
-		// 6. Update session storage
+		// 3. Clear order
+		let orderIndex = this.data.findIndex((order) => order.id === order_id);
+		this.data[orderIndex].items = [];
+		this.data[orderIndex].total = 0;
+		// 4. Update session storage
 		setDataInSessionStorage(this.key, this.data);
-		// Update stock
-		let beerIndex = beers.findIndex((beer) => beer.id === product_id);
-		beers[beerIndex].stock -= quantity;
-		setDataInSessionStorage('beers', beers);
+		setDataInSessionStorage('currentOrder', this.data[orderIndex]);
 
 		return this.data[orderIndex];
 	}
 
-	async removeFromOrder({ order_id, product_id }) {
+	addItemToOrder({ order_id, product_id, quantity = 1 }) {
+		// 1. Get order
+
+		let order = this.getOrder(order_id);
+		if (!order) {
+			return 'Order not found';
+		}
+
+		// 2. Get beer
+		let beers = getDataFromSessionStorage('beers');
+		// 3. Check if beer exists
+		let beer = beers.find((beer) => beer.nr === product_id);
+		if (!beer) {
+			return 'Beer not found';
+		}
+		// 4. Check if quantity is available
+		// if (quantity > beer.stock) {
+		// 	return 'Not enough stock';
+		// }
+
+		// 5. Add item to order
+		let orderIndex = this.data.findIndex((order) => {
+			return order.id == order_id;
+		});
+
+		let itemIndex = this.data[orderIndex].items.findIndex((item) => {
+			return item.product_id == product_id;
+		});
+
+		if (itemIndex !== -1) {
+			this.data[orderIndex].items[itemIndex].quantity += quantity;
+		} else {
+			this.data[orderIndex].items.push({
+				product_id: product_id,
+				name: beer.namn,
+				quantity,
+				price_per_unit: beer.prisinklmoms,
+				paid: false,
+			});
+		}
+
+		// Calculate new total
+		let newItemTotal = quantity * beer.prisinklmoms;
+		this.data[orderIndex].total += newItemTotal;
+
+		setDataInSessionStorage('currentOrder', this.data[orderIndex]);
+
+		// 6. Update session storage
+		setDataInSessionStorage(this.key, this.data);
+		// Update stock
+
+		return this.data[orderIndex];
+	}
+
+	removeFromOrder({ order_id, product_id }) {
 		// 1. Get order
 		let order = this.getOrder(order_id);
 		// 2. Check if order exists
@@ -152,7 +191,7 @@ export default class Order {
 		return order;
 	}
 
-	async enableSplitBillForOrder(order_id) {
+	enableSplitBillForOrder(order_id) {
 		// 1. Get order
 		let orderIndex = this.data.findIndex(
 			(order) => order.order_id === order_id
@@ -172,7 +211,7 @@ export default class Order {
 		return `Split bill enabled for order ${order_id}`;
 	}
 
-	async disableSplitBillForOrder(order_id) {
+	disableSplitBillForOrder(order_id) {
 		// 1. Get order
 		let orderIndex = this.data.findIndex(
 			(order) => order.order_id === order_id
@@ -192,7 +231,7 @@ export default class Order {
 		return `Split bill disabled for order ${order_id}`;
 	}
 
-	async markOrderAsPaid(order_id) {
+	markOrderAsPaid(order_id) {
 		// 1. Find the order by its ID
 		let orderIndex = this.data.findIndex(
 			(order) => order.order_id === order_id
@@ -212,7 +251,7 @@ export default class Order {
 		return `Payment status updated to 'paid' for order ${order_id}`;
 	}
 
-	async updateOrderStatus(order_id, newStatus) {
+	updateOrderStatus(order_id, newStatus) {
 		// 1. Find the order by its ID
 		let orderIndex = this.data.findIndex(
 			(order) => order.order_id === order_id
@@ -232,7 +271,7 @@ export default class Order {
 		return `Order status updated to '${newStatus}' for order ${order_id}`;
 	}
 
-	async getItemOrderStock(item_id) {
+	getItemOrderStock(item_id) {
 		let items = getDataFromSessionStorage('items');
 
 		let itemObject = items.find((item) => item.id === item_id);
@@ -242,7 +281,7 @@ export default class Order {
 		return itemObject.stock;
 	}
 
-	async submitOrder(order_id) {
+	submitOrder(order_id) {
 		// 1. Find the order by its ID
 		let order = this.data.find((order) => order.id === order_id);
 
@@ -276,7 +315,7 @@ export default class Order {
 		return true;
 	}
 
-	async removeOrder(order_id) {
+	removeOrder(order_id) {
 		// 1. Find the order by its ID
 		let orderIndex = this.data.findIndex(
 			(order) => order.order_id === order_id
@@ -296,7 +335,7 @@ export default class Order {
 		return true;
 	}
 
-	async payWithCredit(order_id, user_id) {
+	payWithCredit(order_id, user_id) {
 		let orderIndex = this.data.findIndex((order) => order.id === order_id);
 		let order = this.getOrder(order_id);
 		if (!order) {

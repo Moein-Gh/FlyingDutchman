@@ -14,7 +14,8 @@ export async function loadDB() {
 		sessionStorage.setItem('users', JSON.stringify(users));
 	}
 	if (sessionStorage.getItem('orders') == null) {
-		sessionStorage.setItem('orders', JSON.stringify([]));
+		let orders = await loadJSON(staticAddress + 'dutchman_table_orders.json');
+		sessionStorage.setItem('orders', JSON.stringify(orders));
 	}
 	if (sessionStorage.getItem('tables') == null) {
 		let tables = await loadJSON(staticAddress + 'dutchman_table_tables.json');

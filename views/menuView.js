@@ -1,5 +1,6 @@
 import { checkoutBox } from '../components/checkoutBoxComponent.js';
 import { menuBook } from '../components/menubookComponent.js';
+import Order from '../models/orderModel.js';
 
 export function renderMenu(data) {
 	const appContainer = document.getElementById('app');
@@ -13,7 +14,7 @@ export function renderMenu(data) {
 
 
 		<div class="checkout-box">
-			${checkoutBox(data?.beers)}
+			${checkoutBox(data?.currentOrder)}
 		</div>
 
 	</div>

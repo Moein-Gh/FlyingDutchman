@@ -1,23 +1,24 @@
-
-
-
-
-
 //Alan
-export let checkoutBox = (orderedList) => {
-    let row = '';
-    orderedList.forEach(item => {
-        row += '<tr>'
-        row += '<td style="font-weight:bold;">' + item.namn + '</td>';
-        row += '<td>' + '<div style="display: flex; flex:none"> <button style=" flex:none; width:30%; border-radius: 5px;">+</button><h5 style=" flex:none; width:40%; text-align: center">1</h5><button style=" flex:none; width:30%; border-radius: 5px;">-</button></div>' + '</td>';
-        row += '<td>' + item.prisinklmoms + '</td>';
-        row += '</tr>';
-    });
+export let checkoutBox = (currentOrder) => {
+	let row = '';
 
-    return `
+	currentOrder.items.forEach((item) => {
+		row += '<tr>';
+		row += '<td style="font-weight:bold;">' + item.name + '</td>';
+		row +=
+			'<td>' +
+			'<div style="display: flex; flex:none"> <button style=" flex:none; width:30%; border-radius: 5px;">+</button><h5 style=" flex:none; width:40%; text-align: center">' +
+			item.quantity +
+			'</h5><button style=" flex:none; width:30%; border-radius: 5px;">-</button></div>' +
+			'</td>';
+		row += '<td>' + item.price_per_unit + '</td>';
+		row += '</tr>';
+	});
+
+	return `
         <div class="checkout-box-title-container">
             <h1>Order</h1>
-            <button>Clear all</button>
+            <button class="clearAll">Clear all</button>
         </div>
         <div class="checkbox-table-container">
         
@@ -40,8 +41,8 @@ export let checkoutBox = (orderedList) => {
 
         <hr>
         <div class="checkout-box-bottom">
-            <h1>Total Price: 30</h1>
-            <h3>Discount: 10%</h3>
+            <h1>Total Price: ${currentOrder.total || 0}</h1>
+            <h3>Discount: -</h3>
             <div class="checkbox-submit">
                 <button>Submit Order</button>
             </div>
@@ -49,10 +50,5 @@ export let checkoutBox = (orderedList) => {
 
 
         </div>
-
-
-
-    
-    
     `;
-}
+};

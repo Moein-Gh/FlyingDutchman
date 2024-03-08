@@ -153,7 +153,7 @@ export default class Order {
 		return this.data[orderIndex];
 	}
 
-	removeFromOrder({ order_id, product_id }) {
+	removeFromOrder({ order_id, product_id, quantity = 1 }) {
 		// 1. Get order
 		let order = this.getOrder(order_id);
 		// 2. Check if order exists
@@ -172,20 +172,28 @@ export default class Order {
 			return 'Item not found in order';
 		}
 		let item = order.items[itemIndex];
-		// 5. Remove item from order
-		this.data[orderIndex].items.splice(itemIndex, 1);
+		// 5. Check if quantity is valid
+		if (quantity > item.quantity) {
+			return 'Invalid quantity';
+		}
+		// 6. Remove item from order or update quantity
+		if (quantity === item.quantity) {
+			this.data[orderIndex].items.splice(itemIndex, 1);
+		} else {
+			this.data[orderIndex].items[itemIndex].quantity -= quantity;
+		}
 
 		// Adjust total after removing item
-		let removedItemTotal = item.quantity * item.price_per_unit;
+		let removedItemTotal = item.price_per_unit * quantity;
 		this.data[orderIndex].total -= removedItemTotal;
 
-		// 6. Update session storage
+		// 7. Update session storage
 		setDataInSessionStorage(this.key, this.data);
 
-		// 7. Update stock
+		// 8. Update stock
 		let beers = getDataFromSessionStorage('beers');
 		let beerIndex = beers.findIndex((beer) => beer.id === product_id);
-		beers[beerIndex].stock += item.quantity;
+		beers[beerIndex].stock += quantity;
 		setDataInSessionStorage('beers', beers);
 
 		return order;

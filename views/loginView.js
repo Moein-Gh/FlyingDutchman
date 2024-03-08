@@ -26,6 +26,5 @@ export function renderLogin(data) {
 		</div>
 	</div>
 </div>
-
 	`;
 }

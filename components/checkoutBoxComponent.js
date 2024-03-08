@@ -1,19 +1,20 @@
 //Alan
-export let checkoutBox = (currentOrder) => {
-	let row = '';
+const createRow = (item) => `
+    <tr>
+        <td style="font-weight:bold;">${item.name}</td>
+        <td>
+            <div style="display: flex; flex:none">
+                <button style=" flex:none; width:30%; border-radius: 5px;">+</button>
+                <h5 style=" flex:none; width:40%; text-align: center">${item.quantity}</h5>
+                <button id="currentOrderRemoveButton_${item.nr}" class="currentOrderRemoveButton" style=" flex:none; width:30%; border-radius: 5px;">-</button>
+            </div>
+        </td>
+        <td>${item.price_per_unit}</td>
+    </tr>
+`;
 
-	currentOrder.items.forEach((item) => {
-		row += '<tr>';
-		row += '<td style="font-weight:bold;">' + item.name + '</td>';
-		row +=
-			'<td>' +
-			'<div style="display: flex; flex:none"> <button style=" flex:none; width:30%; border-radius: 5px;">+</button><h5 style=" flex:none; width:40%; text-align: center">' +
-			item.quantity +
-			'</h5><button style=" flex:none; width:30%; border-radius: 5px;">-</button></div>' +
-			'</td>';
-		row += '<td>' + item.price_per_unit + '</td>';
-		row += '</tr>';
-	});
+export let checkoutBox = (currentOrder) => {
+	let rows = currentOrder.items.map(createRow).join('');
 
 	return `
         <div class="checkout-box-title-container">
@@ -21,7 +22,6 @@ export let checkoutBox = (currentOrder) => {
             <button class="clearAll">Clear all</button>
         </div>
         <div class="checkbox-table-container">
-        
             <div class="checkbox-table">
                 <table>
                     <colgroup style="width: 100%">
@@ -34,11 +34,10 @@ export let checkoutBox = (currentOrder) => {
                         <th>Qty</th>
                         <th>$$</th>
                     </tr>
-                    ${row}				
+                    ${rows}				
                 </table>
             </div>
         </div>
-
         <hr>
         <div class="checkout-box-bottom">
             <h1>Total Price: ${Math.ceil(currentOrder.total) || 0}</h1>
@@ -46,9 +45,6 @@ export let checkoutBox = (currentOrder) => {
             <div class="checkbox-submit">
                 <button>Submit Order</button>
             </div>
-        </div>
-
-
         </div>
     `;
 };

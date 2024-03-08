@@ -1,6 +1,6 @@
 import { checkoutBox } from '../components/checkoutBoxComponent.js';
 import { menuBook } from '../components/menubookComponent.js';
-import Order from '../models/orderModel.js';
+import { orderUndoRedo } from '../components/undoRedoComponents.js';
 
 export function renderMenu(data) {
 	const appContainer = document.getElementById('app');
@@ -14,6 +14,7 @@ export function renderMenu(data) {
 
 
 		<div class="checkout-box">
+			${orderUndoRedo(data?.currentOrder)}
 			${checkoutBox(data?.currentOrder)}
 		</div>
 

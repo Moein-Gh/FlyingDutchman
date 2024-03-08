@@ -12,7 +12,7 @@ export let beerCard = (beer) => {
 				<i class="material-symbols-outlined"> sports_bar </i>
 				<div class="beer-name">${beer.namn}</div>
 				<div class="beer-price">${beer.prisinklmoms}</div>
-				<button id=${beer.nr} class="AddButton">+Add</button>
+				<button  id=${beer.nr} class="AddButton">+Add</button>
 			</div>
 		</div>
 	`;

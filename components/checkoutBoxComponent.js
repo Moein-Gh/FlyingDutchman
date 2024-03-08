@@ -41,7 +41,7 @@ export let checkoutBox = (currentOrder) => {
 
         <hr>
         <div class="checkout-box-bottom">
-            <h1>Total Price: ${currentOrder.total || 0}</h1>
+            <h1>Total Price: ${Math.ceil(currentOrder.total) || 0}</h1>
             <h3>Discount: -</h3>
             <div class="checkbox-submit">
                 <button>Submit Order</button>

@@ -2,6 +2,8 @@ export let beerCard = (beer) => {
 	return `
 		<div class="beer-card">
 			<img
+			  id="beer-pic_${beer.nr}"
+				class="beer-pic"
 				src="img/Heineken.jpg"
 				style="width: 50%"
 				alt="beverage pic"

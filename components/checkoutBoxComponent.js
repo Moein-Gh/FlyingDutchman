@@ -1,26 +1,27 @@
-
-
-
-
-
 //Alan
-export let checkoutBox = (orderedList) => {
-    let row = '';
-    orderedList.forEach(item => {
-        row += '<tr>'
-        row += '<td style="font-weight:bold;">' + item.namn + '</td>';
-        row += '<td>' + '<div style="display: flex; flex:none"> <button style=" flex:none; width:30%; border-radius: 5px;">+</button><h5 style=" flex:none; width:40%; text-align: center">1</h5><button style=" flex:none; width:30%; border-radius: 5px;">-</button></div>' + '</td>';
-        row += '<td>' + item.prisinklmoms + '</td>';
-        row += '</tr>';
-    });
+const createRow = (item) => `
+    <tr>
+        <td style="font-weight:bold;">${item.name}</td>
+        <td>
+            <div style="display: flex; flex:none">
+                <button style=" flex:none; width:30%; border-radius: 5px;">+</button>
+                <h5 style=" flex:none; width:40%; text-align: center">${item.quantity}</h5>
+                <button id="currentOrderRemoveButton_${item.nr}" class="currentOrderRemoveButton" style=" flex:none; width:30%; border-radius: 5px;">-</button>
+            </div>
+        </td>
+        <td>${item.price_per_unit}</td>
+    </tr>
+`;
 
-    return `
+export let checkoutBox = (currentOrder) => {
+	let rows = currentOrder.items.map(createRow).join('');
+
+	return `
         <div class="checkout-box-title-container">
             <h1>Order</h1>
-            <button>Clear all</button>
+            <button class="clearAll">Clear all</button>
         </div>
         <div class="checkbox-table-container">
-        
             <div class="checkbox-table">
                 <table>
                     <colgroup style="width: 100%">
@@ -33,26 +34,17 @@ export let checkoutBox = (orderedList) => {
                         <th>Qty</th>
                         <th>$$</th>
                     </tr>
-                    ${row}				
+                    ${rows}				
                 </table>
             </div>
         </div>
-
         <hr>
         <div class="checkout-box-bottom">
-            <h1>Total Price: 30</h1>
-            <h3>Discount: 10%</h3>
+            <h1>Total Price: ${Math.ceil(currentOrder.total) || 0}</h1>
+            <h3>Discount: -</h3>
             <div class="checkbox-submit">
                 <button>Submit Order</button>
             </div>
         </div>
-
-
-        </div>
-
-
-
-    
-    
     `;
-}
+};

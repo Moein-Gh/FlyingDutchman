@@ -3,20 +3,22 @@ import { MenuController } from './controllers/menuController.js';
 import { userController } from './controllers/userController.js';
 import { StockController } from './controllers/stockController.js';
 import { profileController } from './controllers/profileController.js';
+import { CommandStack } from './CommandStack.js';
+const commandStack = new CommandStack();
 
 const routes = {
 	'/': HomeController,
 	'/menu': MenuController,
 	'/login': userController,
-	'/stock': StockController, //Sheng-Yu Wu
-	'/profile': profileController, //Sheng-Yu Wu
+	'/stock': StockController,
+	'/profile': profileController,
 };
 
 export function handleRouteChange() {
 	const path = window.location.hash.substr(1) || '/';
 	const routeHandler = routes[path];
 	if (routeHandler) {
-		routeHandler();
+		routeHandler(commandStack);
 	} else {
 		console.error('Route not found:', path);
 	}

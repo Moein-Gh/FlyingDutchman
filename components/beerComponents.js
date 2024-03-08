@@ -1,12 +1,18 @@
 export let beerCard = (beer) => {
 	return `
 		<div class="beer-card">
-			<img src="img/Heineken.jpg" style="width: 50%" alt="beverage pic" width="45%">
+			<img
+			  id="beer-pic_${beer.nr}"
+				class="beer-pic"
+				src="img/Heineken.jpg"
+				style="width: 50%"
+				alt="beverage pic"
+				width="45%" />
 			<div style="width: 50%">
 				<i class="material-symbols-outlined"> sports_bar </i>
 				<div class="beer-name">${beer.namn}</div>
 				<div class="beer-price">${beer.prisinklmoms}</div>
-				<button>+Add</button>
+				<button  id=${beer.nr} class="AddButton">+Add</button>
 			</div>
 		</div>
 	`;

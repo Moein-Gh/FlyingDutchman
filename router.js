@@ -4,6 +4,7 @@ import { userController } from './controllers/userController.js';
 import { StockController } from './controllers/stockController.js';
 import { profileController } from './controllers/profileController.js';
 import { CommandStack } from './CommandStack.js';
+import { TableOrderController } from './controllers/tableOrderController.js';//Sheng-Yu
 const commandStack = new CommandStack();
 
 const routes = {
@@ -12,6 +13,7 @@ const routes = {
 	'/login': userController,
 	'/stock': StockController,
 	'/profile': profileController,
+	'/table/order': TableOrderController,//Sheng-Yu
 };
 
 export function handleRouteChange() {

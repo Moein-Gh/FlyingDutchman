@@ -2,7 +2,7 @@ import { beerList } from './beerComponents.js';
 
 // Alan
 export let menuBook = (data) => {
-	return `
+    return `
         <div class="menu-category-container">
             <ul>
                 <li class="all">All</li>

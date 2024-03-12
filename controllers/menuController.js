@@ -19,7 +19,6 @@ export async function MenuController(commandStack) {
 
 	function addButtonELs({ beerModel, orderModel, commandStack }) {
 		let AddButton = document.querySelectorAll('.AddButton');
-
 		AddButton.forEach((button) => {
 			button.addEventListener('click', async () => {
 				let beerId = button.id;
@@ -29,66 +28,102 @@ export async function MenuController(commandStack) {
 					quantity: 1,
 				};
 				const addItemCommand = {
-					execute: async (args) => {
-						await orderModel.addItemToOrder(args);
-						MenuController(commandStack);
-					},
-					undo: async (args) => {
-						await orderModel.removeItemFromOrder(args);
-						MenuController(commandStack);
-					},
 					value: args,
 					undoValue: args,
+					orderModel: orderModel,
+					execute: async function (args) {
+						await this.orderModel.addItemToOrder(args);
+						MenuController(commandStack);
+					},
+					undo: async function (args) {
+						await this.orderModel.removeFromOrder(args);
+						MenuController(commandStack);
+					},
 				};
 				commandStack.execute(addItemCommand);
 			});
 		});
 
-		let removeButton = document.querySelectorAll('.currentOrderRemoveButton');
-		removeButton.forEach((button) => {
+		let AddButtonsInOrder = document.querySelectorAll('.currentOrderAddButton');
+		AddButtonsInOrder.forEach((button) => {
 			button.addEventListener('click', async () => {
 				let beerId = button.id.split('_')[1];
-				const removeItemCommand = {
-					execute: async (item) => {
-						await orderModel.removeFromOrder(item);
+				let args = {
+					order_id: currentOrder.id,
+					product_id: beerId,
+					quantity: 1,
+				};
+				const addItemCommand = {
+					value: args,
+					undoValue: args,
+					orderModel: orderModel,
+					execute: async function (args) {
+						await this.orderModel.addItemToOrder(args);
 						MenuController(commandStack);
 					},
-					redo: async (item) => {
-						await orderModel.removeFromOrder(item);
+					undo: async function (args) {
+						await this.orderModel.removeFromOrder(args);
 						MenuController(commandStack);
-					},
-					undo: async (item) => {
-						await orderModel.addItemToOrder(item);
-						MenuController(commandStack);
-					},
-					value: {
-						order_id: currentOrder.id,
-						product_id: beerId,
-						quantity: 1,
 					},
 				};
-				const commandStack = new CommandStack();
+				commandStack.execute(addItemCommand);
+			});
+		});
+
+		let removeButtons = document.querySelectorAll('.currentOrderRemoveButton');
+		removeButtons.forEach((button) => {
+			button.addEventListener('click', async () => {
+				let beerId = button.id.split('_')[1];
+				let args = {
+					order_id: currentOrder.id,
+					product_id: beerId,
+					quantity: 1,
+				};
+				const removeItemCommand = {
+					value: args, // Defines the arguments for adding/removing an item
+					undoValue: args, // Stores the same arguments for undo operation
+					orderModel: orderModel, // Reference to the order model, assuming it's defined in your context
+					execute: async function (args) {
+						// Logic to remove an item from the order
+						await this.orderModel.removeFromOrder(args);
+						MenuController(commandStack); // Assuming this updates your UI accordingly
+					},
+					undo: async function (args) {
+						// Logic to add an item back to the order (undo the remove action)
+						await this.orderModel.addItemToOrder(args);
+						MenuController(commandStack); // Assuming this updates your UI accordingly
+					},
+				};
 				commandStack.execute(removeItemCommand);
 			});
 		});
 
 		let ClearButton = document.querySelector('.clearAll');
 		ClearButton.addEventListener('click', async () => {
-			const clearOrderCommand = {
-				execute: async (order_id) => {
-					// Save the current state of the order before clearing it
-					this.previousOrder = { ...orderModel.getOrder(order_id) };
-					await orderModel.clearOrder(order_id);
-					MenuController(commandStack);
-				},
-				undo: async (order_id) => {
-					// Restore the order to its previous state
-					orderModel.data.push(this.previousOrder);
-					MenuController(commandStack);
-				},
-				value: currentOrder.id,
+			let args = {
+				order_id: currentOrder.id,
 			};
-			const commandStack = new CommandStack();
+			const clearOrderCommand = {
+				value: args, // Use args to keep the pattern consistent
+				undoValue: args, // Even though it's the same for simplicity, it maintains the pattern
+				orderModel: orderModel, // Assuming orderModel is accessible in this context
+				execute: async function (args) {
+					// Save the current state of the order before clearing it
+					this.previousOrderState = {
+						...this.orderModel.getOrder(args.order_id),
+					};
+					await this.orderModel.clearOrder(args.order_id);
+					MenuController(commandStack);
+				},
+				undo: async function (args) {
+					// Restore the order to its previous state
+					// This assumes there's a method to replace the order's data entirely or you might need to adjust this logic based on your actual orderModel methods
+					if (this.previousOrderState) {
+						await this.orderModel.restoreOrder(this.previousOrderState);
+						MenuController(commandStack);
+					}
+				},
+			};
 			commandStack.execute(clearOrderCommand);
 		});
 
@@ -99,6 +134,7 @@ export async function MenuController(commandStack) {
 				e.dataTransfer.setData('id', e.target.id);
 			});
 		});
+
 		let checkOutBox = document.querySelector('.checkout-box');
 		checkOutBox.addEventListener('dragover', (e) => {
 			e.preventDefault();
@@ -107,22 +143,34 @@ export async function MenuController(commandStack) {
 			e.preventDefault();
 			let data = e.dataTransfer.getData('id');
 			let beerId = data.split('_')[1];
-			orderModel.addItemToOrder({
+			let dropArgs = {
 				order_id: currentOrder.id,
 				product_id: beerId,
 				quantity: 1,
-			});
+			};
+			const addItemByDropCommand = {
+				value: dropArgs,
+				undoValue: dropArgs,
+				orderModel: orderModel,
+				execute: async function (dropArgs) {
+					await this.orderModel.addItemToOrder(dropArgs);
+					MenuController(commandStack);
+				},
+				undo: async function (dropArgs) {
+					await this.orderModel.removeFromOrder(dropArgs);
+					MenuController(commandStack);
+				},
+			};
+			commandStack.execute(addItemByDropCommand);
 			MenuController(commandStack);
 		});
 
 		let undoButton = document.querySelector('.order-undo');
 		undoButton.addEventListener('click', async () => {
-			const commandStack = new CommandStack();
 			commandStack.undo();
 		});
 		let redoButton = document.querySelector('.order-redo');
 		redoButton.addEventListener('click', async () => {
-			const commandStack = new CommandStack();
 			commandStack.redo();
 		});
 	}

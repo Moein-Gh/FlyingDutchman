@@ -24,7 +24,6 @@ export let menuBook = (data) => {
 // export function Test() {
 
 //     const menuContainer = document.getElementById('menuBookPages');
-//     console.log('Test1')
 //     menuContainer.innerHTML = `<div>TTTTTTEST</div> `
 // };
 

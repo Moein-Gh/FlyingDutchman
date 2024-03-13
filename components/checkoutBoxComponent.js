@@ -16,9 +16,9 @@ const createRow = (item) => {
 };
 
 export let checkoutBox = (currentOrder) => {
-	let rows = currentOrder.items.map(createRow).join('');
+    let rows = currentOrder.items.map(createRow).join('');
 
-	return `
+    return `
         <div class="checkout-box-title-container">
             <h1>Order</h1>
             <button class="clearAll">Clear all</button>

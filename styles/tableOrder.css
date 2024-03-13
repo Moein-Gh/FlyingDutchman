@@ -1,0 +1,123 @@
+/* Sheng-Yu */
+
+.Yu-orderPageTitle {
+    margin: 1%;
+    background-color: aqua;
+    font-size:3vh;
+    text-align: center;
+    display: flex;
+}
+
+.Yu-orderPageTitle button{
+    flex: none;
+    width: 10%;
+}
+
+.Yu-orderPageTitle h1{
+    flex: none;
+    width: 70%;
+}
+
+
+
+.Yu-orderSectionContainer {
+    height: 83vh;
+    width: 100%;
+    background-color: gray;
+    padding: 1%;
+}
+
+
+.Yu-orderTableContainer {
+    height: 80%;
+    background-color: yellow;
+    overflow: scroll;
+}
+
+.Yu-orderTableContainer table {
+    text-align: center;
+    width: 100%;
+    max-height: 100%;
+    border: 3px solid;
+}
+
+.Yu-orderTableContainer tr {
+    text-align: center;
+    border: 3px solid;
+    height: 3em;
+}
+
+.Yu-orderTableContainer th {
+    text-align: center;
+    border: 3px solid;
+}
+
+.Yu-orderTableContainer td {
+    text-align: center;
+    border: 3px solid;
+}
+
+.Yu-orderTableContainer td button{
+    text-align: center;
+    width: 25%;
+}
+
+.Yu-orderTableContainer td h3{
+    text-align: center;
+    width: 20%;
+}
+
+.Yu-orderTableContainer td div{
+    
+    display: flex;
+    justify-content: center;
+}
+
+#Yu-orderPrice{
+    width: 50%;
+    text-align: right;
+}
+
+
+#Yu-orderComment{
+    width: 100%;
+    height: 100%;
+    
+}   
+
+
+
+.Yu-orderSectionBottomContainer{
+    height:20%;
+    background-color: blueviolet;
+}
+
+.Yu-orderSectionBottomRow_1{
+    display: flex;
+    justify-content: flex-end;
+    height: 33%;
+    background-color: #d40505;
+}
+
+.Yu-orderSectionBottomRow_2{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #c15b5b;
+    height: 33%;
+}
+
+.Yu-orderSectionBottomRow_3{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #6dc388;
+    height: 33%;
+}
+
+.Yu-orderSectionBottomRow_3 button{
+    flex: none;
+    width: 20%;
+    text-align: center;
+    margin: 3px;
+}
+
+

@@ -1,17 +1,19 @@
 //Alan
-const createRow = (item) => `
+const createRow = (item) => {
+	return `
     <tr>
         <td style="font-weight:bold;">${item.name}</td>
         <td>
             <div style="display: flex; flex:none">
-                <button style=" flex:none; width:30%; border-radius: 5px;">+</button>
+                <button id="currentOrderAddButton_${item.product_id}" class="currentOrderAddButton"  style=" flex:none; width:30%; border-radius: 5px;">+</button>
                 <h5 style=" flex:none; width:40%; text-align: center">${item.quantity}</h5>
-                <button id="currentOrderRemoveButton_${item.nr}" class="currentOrderRemoveButton" style=" flex:none; width:30%; border-radius: 5px;">-</button>
+                <button id="currentOrderRemoveButton_${item.product_id}" class="currentOrderRemoveButton" style=" flex:none; width:30%; border-radius: 5px;">-</button>
             </div>
         </td>
         <td>${item.price_per_unit}</td>
     </tr>
 `;
+};
 
 export let checkoutBox = (currentOrder) => {
     let rows = currentOrder.items.map(createRow).join('');

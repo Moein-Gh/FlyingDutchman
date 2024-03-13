@@ -5,6 +5,7 @@ import { StockController } from './controllers/stockController.js';
 import { profileController } from './controllers/profileController.js';
 import { CommandStack } from './CommandStack.js';
 import { TableOrderController } from './controllers/tableOrderController.js';//Sheng-Yu
+import { orderController } from './controllers/orderController.js';
 const commandStack = new CommandStack();
 
 const routes = {
@@ -14,6 +15,7 @@ const routes = {
 	'/stock': StockController,
 	'/profile': profileController,
 	'/table/order': TableOrderController,//Sheng-Yu
+	'/orders': orderController,
 };
 
 export function handleRouteChange() {

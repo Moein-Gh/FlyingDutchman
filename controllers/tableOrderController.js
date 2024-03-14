@@ -79,10 +79,11 @@ export async function TableOrderController(commandStack) {
         EntryDelButton.forEach((button) => {
             button.addEventListener('click', async () => {
                 let productId = button.id.split('_')[1];
+                let orderQuantity = orderOfTable.items[productId].quantity;
                 let args = {
                     order_id: orderOfTable.id,
                     product_id: productId,
-                    quantity: -1,
+                    quantity: orderQuantity,
                 };
 
                 const removeFromOrderCommand = {

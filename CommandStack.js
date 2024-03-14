@@ -5,19 +5,19 @@ export class CommandStack {
 	}
 
 	execute(command) {
-		console.log('-------------------');
-		console.log(this.stack.length);
-		console.log('-------------------');
+		// console.log('-------------------');
+		// console.log(this.stack.length);
+		// console.log('-------------------');
 		this.stack.splice(this.stackIndex + 1);
-		console.log('-------------------');
-		console.log(command);
-		console.log('-------------------');
+		// console.log('-------------------');
+		console.log("Command:", command);
+		// console.log('-------------------');
 		this.stack.push(command);
 		command.execute(command.value);
 		this.stackIndex++;
-		console.log('-------------------');
-		console.log(this.stack.length);
-		console.log('-------------------');
+		// console.log('-------------------');
+		// console.log(this.stack.length);
+		// console.log('-------------------');
 	}
 
 	undo() {

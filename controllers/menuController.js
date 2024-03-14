@@ -19,7 +19,7 @@ export async function MenuController(commandStack) {
 
 	function addButtonELs({ beerModel, orderModel, commandStack }) {
 		let AddButton = document.querySelectorAll('.AddButton');
-
+		console.log("AddButtonClicked");
 		AddButton.forEach((button) => {
 			button.addEventListener('click', async () => {
 				let beerId = button.id;

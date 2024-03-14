@@ -2,7 +2,7 @@
 
 //Sheng-Yu
 export let creatTableOrderEntry = (item, index) => {
-    //console.log('ItemName:', item.name);
+    //console.log('ItemName:', item);
     const entryNumber = index + 1;
     return `
         <tr>
@@ -10,9 +10,9 @@ export let creatTableOrderEntry = (item, index) => {
             <td style="font-weight:bold;">${item.name}</td>
             <td>
                 <div>
-                    <button onclick="">+</button>
-                    <h3>${item.quantity}</h3>
-                    <button onclick="">-</button>
+                    <button id="qtyAddBtn_${item.product_id}" class="AddQtyButton">+</button>
+                    <h3 id="qtyNumber_${item.product_id}">${item.quantity}</h3>
+                    <button id="qtySubBtn_${item.product_id}" class="SubQtyButton">-</button>
                 </div>
             </td>
             <td>
@@ -21,7 +21,7 @@ export let creatTableOrderEntry = (item, index) => {
                 </div>
             </td>
             <td><input id="Yu-orderComment" name="orderComment" value="No Comment"></td>
-            <td><button onclick="">Del</button></td>
+            <td><button id="delOrderEntryBtn_${item.product_id}" class="delOrderEntryBtn">Del</button></td>
         </tr>
     `;
 };

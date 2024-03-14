@@ -19,10 +19,15 @@
     height: 3em;
 }
 
-.stockTable-container th{
-    height:3em;
-}
-.stockTable-container td{
-    height:2em;
-}
 
+.stockTable th {
+    text-align: left; /* Default alignment for headers */
+  }
+  
+  .stockTable td {
+   text-align: left; /* Default alignment for data cells */
+  }
+  
+   .stockTable td:last-child { /* Right align only the last cell */
+    text-align: right;
+  }

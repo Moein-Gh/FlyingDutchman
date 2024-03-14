@@ -99,6 +99,59 @@ export default class Order {
 		return this.data[orderIndex];
 	}
 
+	restoreOrder(previousOrder) {
+		// 1. Check if the previous order object is provided
+		if (!previousOrder) {
+			return 'Previous order data is missing';
+		}
+
+		// 2. Find the index of the order to be restored
+		let orderIndex = this.data.findIndex(
+			(order) => order.id === previousOrder.id
+		);
+
+		// 3. Check if order exists in the current data
+		if (orderIndex === -1) {
+			// If the order doesn't exist, it might have been removed or not yet added
+			// Depending on your requirements, you could add the previousOrder back to this.data
+			// For this example, we'll just add it back
+			this.data.push(previousOrder);
+		} else {
+			// 4. Restore order items and total from the previousOrder
+			this.data[orderIndex].items = previousOrder.items;
+			this.data[orderIndex].total = previousOrder.total;
+		}
+
+		// 5. Update session storage
+		setDataInSessionStorage(this.key, this.data);
+		setDataInSessionStorage(
+			'currentOrder',
+			this.data[orderIndex] ?? previousOrder
+		);
+
+		return this.data[orderIndex] ?? previousOrder; // Return the restored order
+	}
+
+	submitOrder(order_id) {
+		// 1. Find the order by its ID
+		let orderIndex = this.data.findIndex(
+			(order) => order.order_id === order_id
+		);
+
+		// 2. Check if the order exists
+		if (orderIndex === -1) {
+			return 'Order not found';
+		}
+
+		// 3. Update the order status
+		this.data[orderIndex].status = 'submitted';
+
+		// 4. Update session storage to reflect the change
+		setDataInSessionStorage(this.key, this.data);
+
+		return `Order ${order_id} submitted`;
+	}
+
 	addItemToOrder({ order_id, product_id, quantity = 1 }) {
 		// 1. Get order
 
@@ -154,49 +207,48 @@ export default class Order {
 	}
 
 	removeFromOrder({ order_id, product_id, quantity = 1 }) {
-		// 1. Get order
-		let order = this.getOrder(order_id);
-		// 2. Check if order exists
-		if (!order) {
-			return 'Order not found';
+		// Find the index of the order with the specified order_id
+		const orderIndex = this.data.findIndex((order) => order.id === order_id);
+		if (orderIndex === -1) {
+			return 'Order not found'; // Return an error message if no matching order is found
 		}
-		// 3. Get item
-		const orderIndex = this.data.findIndex(
-			(order) => order.order_id === order_id
-		);
+		let order = this.data[orderIndex];
+
+		// Find the index of the item with the specified product_id within the found order
 		const itemIndex = order.items.findIndex(
 			(item) => item.product_id === product_id
 		);
-		// 4. Check if item exists
 		if (itemIndex === -1) {
-			return 'Item not found in order';
+			return 'Item not found in order'; // Return an error message if no matching item is found
 		}
 		let item = order.items[itemIndex];
-		// 5. Check if quantity is valid
+
+		// Validate that the requested quantity to remove does not exceed the item's current quantity
 		if (quantity > item.quantity) {
-			return 'Invalid quantity';
+			return 'Invalid quantity'; // Return an error message if the requested quantity is invalid
 		}
-		// 6. Remove item from order or update quantity
+
+		// Remove the item from the order or update its quantity based on the specified quantity
 		if (quantity === item.quantity) {
+			// If the specified quantity equals the item's quantity, remove the item entirely
 			this.data[orderIndex].items.splice(itemIndex, 1);
 		} else {
+			// Otherwise, reduce the item's quantity by the specified amount
 			this.data[orderIndex].items[itemIndex].quantity -= quantity;
 		}
 
-		// Adjust total after removing item
+		// Calculate the total value of the removed items
 		let removedItemTotal = item.price_per_unit * quantity;
+		// Adjust the order's total price by subtracting the value of the removed items
 		this.data[orderIndex].total -= removedItemTotal;
 
-		// 7. Update session storage
+		// Update the individual order in session storage with the new total
+		setDataInSessionStorage('currentOrder', this.data[orderIndex]);
+
+		// Update the entire data array in session storage to reflect the changes
 		setDataInSessionStorage(this.key, this.data);
 
-		// 8. Update stock
-		let beers = getDataFromSessionStorage('beers');
-		let beerIndex = beers.findIndex((beer) => beer.id === product_id);
-		beers[beerIndex].stock += quantity;
-		setDataInSessionStorage('beers', beers);
-
-		return order;
+		return order; // Return the updated order object
 	}
 
 	enableSplitBillForOrder(order_id) {

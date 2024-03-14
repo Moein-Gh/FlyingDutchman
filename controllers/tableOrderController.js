@@ -85,7 +85,7 @@ export async function TableOrderController(commandStack) {
                     product_id: productId,
                     quantity: orderQuantity,
                 };
-
+                //tmp
                 const removeFromOrderCommand = {
                     execute: async (args) => {
                         await orderModel.removeFromOrder(args);

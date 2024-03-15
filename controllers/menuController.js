@@ -173,5 +173,11 @@ export async function MenuController(commandStack) {
 		redoButton.addEventListener('click', async () => {
 			commandStack.redo();
 		});
+
+		let submitButton = document.querySelector('.submitButton');
+		submitButton.addEventListener('click', async () => {
+			orderModel.submitOrder(currentOrder.id);
+			MenuController(commandStack);
+		});
 	}
 }

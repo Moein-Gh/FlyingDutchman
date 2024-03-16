@@ -3,7 +3,8 @@
 }
 
 .beers {
-	padding: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
 }
 
 .beers-title {
@@ -15,7 +16,7 @@
 	justify-content: center;
 	flex-wrap: wrap;
 
-	padding: 1rem 1rem;
+	padding: 1rem 0rem;
 	background-color: #6c9fc63d;
 	border-radius: 20px;
 }
@@ -23,13 +24,13 @@
 .beer-card {
 	display: flex;
 	align-items: center;
-	padding-left: 1rem;
+	padding-left: 2rem;
 	margin: 1rem;
 	background-color: #fff;
 	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-	border-radius: 15px;
-	width: 350px;
-	height: 100px;
+	border-radius: 15px 50px 50px 15px;
+	width: 330px;
+	height: 90px;
 }
 
 .card-content {
@@ -45,17 +46,54 @@
 }
 
 .beer-price {
-	text-align: left; /* Aligns price to the right */
+	text-align: left;
+}
+.AddButton {
+	position: relative;
+	font-size: 1rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 1em 2.5em;
+	display: inline-block;
+	border-radius: 6em;
+	transition: all 0.2s;
+	border: none;
+	font-family: inherit;
+	font-weight: 500;
+	color: black;
+	background-color: #a29f575e;
+	height: 100%;
+	aspect-ratio: 1;
 }
 
-.AddButton {
-	padding: 0.5rem 1rem;
-	border: none;
+.AddButton:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.AddButton:active {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.AddButton::after {
+	content: '';
+	display: inline-block;
 	height: 100%;
-	border-radius: 50px 10px 10px 50px;
-	background-color: #c0e0bed4;
-	color: black;
-	cursor: pointer;
-	width: 30%;
-	font-size: 2.5rem;
+	width: 100%;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all 0.4s;
+}
+
+.AddButton::after {
+	background-color: #a29f575e;
+}
+
+.AddButton:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
 }

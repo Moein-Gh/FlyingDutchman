@@ -8,7 +8,7 @@ export let beerCard = (beer) => {
 					<h4 class="beer-price">${beer.prisinklmoms} SEK</h4>
 				</div>
 			</div>
-			<button id="${beer.nr}" class="AddButton">+</button>
+			<button id="${beer.nr}" class="AddButton"><h2>+</h2></button>
 		</div>
 	`;
 };

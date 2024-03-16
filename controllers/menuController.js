@@ -102,7 +102,7 @@ export async function MenuController(commandStack) {
 			});
 		});
 
-		let ClearButton = document.querySelector('.clearAll');
+		let ClearButton = document.querySelector('.clearButton');
 		ClearButton.addEventListener('click', async () => {
 			let args = {
 				order_id: currentOrder.id,
@@ -168,11 +168,11 @@ export async function MenuController(commandStack) {
 			MenuController(commandStack);
 		});
 
-		let undoButton = document.querySelector('.order-undo');
+		let undoButton = document.querySelector('#undo');
 		undoButton.addEventListener('click', async () => {
 			commandStack.undo();
 		});
-		let redoButton = document.querySelector('.order-redo');
+		let redoButton = document.querySelector('#redo');
 		redoButton.addEventListener('click', async () => {
 			commandStack.redo();
 		});

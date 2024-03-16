@@ -13,7 +13,7 @@ export function renderMenu(data) {
 		</div>
 
 		<div class="checkout-box">
-			${orderUndoRedo(data?.currentOrder)}
+		  
 			${checkoutBox(data?.currentOrder)}
 		</div>
 

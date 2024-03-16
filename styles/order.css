@@ -19,6 +19,7 @@
 	background-color: green;
 	color: white;
 	border-radius: 10px;
+	font-size: 2.5rem;
 }
 .order-redo {
 	width: 40%;
@@ -26,4 +27,5 @@
 	color: white;
 	background-color: blue;
 	border-radius: 10px;
+	font-size: 2.5rem;
 }

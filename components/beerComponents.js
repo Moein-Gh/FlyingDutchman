@@ -1,19 +1,14 @@
 export let beerCard = (beer) => {
 	return `
-		<div class="beer-card">
-			<img
-			  id="beer-pic_${beer.nr}"
-				class="beer-pic"
-				src="img/Heineken.jpg"
-				style="width: 50%"
-				alt="beverage pic"
-				width="45%" />
-			<div style="width: 50%">
-				<i class="material-symbols-outlined"> sports_bar </i>
-				<div class="beer-name">${beer.namn}</div>
-				<div class="beer-price">${beer.prisinklmoms}</div>
-				<button  id=${beer.nr} class="AddButton">+Add</button>
+		<div id="beerCard_${beer.nr}" class="beer-card" draggable=true>
+			<div class="card-content">
+				<div>
+					<h3 class="beer-name">${beer.namn}</h3>
+
+					<h4 class="beer-price">${beer.prisinklmoms} SEK</h4>
+				</div>
 			</div>
+			<button id="${beer.nr}" class="AddButton">+</button>
 		</div>
 	`;
 };

@@ -5,44 +5,57 @@
 .beers {
 	padding: 20px;
 }
+
 .beers-title {
 	text-align: center;
 }
+
 .beers-list {
 	display: flex;
-	justify-content: left;
+	justify-content: center;
 	flex-wrap: wrap;
+
+	padding: 1rem 1rem;
+	background-color: #6c9fc63d;
+	border-radius: 20px;
 }
 
 .beer-card {
 	display: flex;
 	align-items: center;
-	width: calc(33% - 30px);
-	margin: 10px;
-	padding: 15px;
-	box-shadow: var(--primary-box-shadow);
-	text-align: center;
-	background-color: rgb(221, 228, 228);
-}
-.beer-card i {
-	color: #2d9f21;
+	padding-left: 1rem;
+	margin: 1rem;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	border-radius: 15px;
+	width: 350px;
+	height: 100px;
 }
 
-.beer-card button {
-	font-size: small;
-	padding: 0.3em;
-	border-radius: 0.5em;
-	text-align: left;
-	border: none;
-	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.19);
-	cursor: pointer;
+.card-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 
-.beer-name {
-	font-size: medium;
+.beer-name,
+.beer-price {
+	line-height: 30px;
 	font-weight: bold;
 }
 
 .beer-price {
-	font-size: medium;
+	text-align: left; /* Aligns price to the right */
+}
+
+.AddButton {
+	padding: 0.5rem 1rem;
+	border: none;
+	height: 100%;
+	border-radius: 50px 10px 10px 50px;
+	background-color: #c0e0bed4;
+	color: black;
+	cursor: pointer;
+	width: 30%;
+	font-size: 2.5rem;
 }

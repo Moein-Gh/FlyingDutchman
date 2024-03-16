@@ -1,7 +1,9 @@
 import Beer from '../models/beerModel.js';
 import Order from '../models/orderModel.js';
+import User from '../models/userModel.js';
 import { renderMenu } from '../views/menuView.js';
-import { CommandStack } from '../CommandStack.js';
+
+import { userController } from './userController.js';
 
 export async function MenuController(commandStack) {
 	let beerModel = new Beer();
@@ -13,6 +15,8 @@ export async function MenuController(commandStack) {
 	let currentOrder = orderModel.getCurrentOrder();
 
 	let MenuPageBeers = beerModel.getBeers({ limit: 20 });
+
+	let language = sessionStorage.getItem('language');
 
 	renderMenu({ beers: MenuPageBeers, currentOrder: currentOrder });
 	addButtonELs({ beerModel, orderModel, commandStack });
@@ -127,10 +131,9 @@ export async function MenuController(commandStack) {
 			commandStack.execute(clearOrderCommand);
 		});
 
-		let beerImages = document.querySelectorAll('.beer-pic');
+		let beerImages = document.querySelectorAll('.beer-card');
 		beerImages.forEach((image) => {
 			image.addEventListener('dragstart', (e) => {
-				console.log('dragging');
 				e.dataTransfer.setData('id', e.target.id);
 			});
 		});

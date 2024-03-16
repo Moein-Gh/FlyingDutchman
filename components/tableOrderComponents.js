@@ -21,7 +21,7 @@ export let creatTableOrderEntry = (item, index) => {
                 </div>
             </td>
             <td><input id="Yu-orderComment" name="orderComment" value="No Comment"></td>
-            <td><button id="delOrderEntryBtn_${item.product_id}" class="delOrderEntryBtn">Del</button></td>
+            <td><button id="delOrderEntryBtn_${item.product_id}_${index}" class="delOrderEntryBtn">Del</button></td>
         </tr>
     `;
 };

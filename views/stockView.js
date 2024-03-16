@@ -8,32 +8,30 @@ export function renderStock(data) {
         row += '<tr>'
         row += '<td>' + '#' + '</td>';
         row += '<td>' + item.namn + '</td>';
-        row += '<td style="text-align: right;>' + '20' + '</td>';
-
+        row += '<td>' + item.prisinklmoms + '</td>';
+        row += '<td style="text-align: right;>' + item.stock + '</td>';
         row += '</tr>';
 
     });
 
     appContainer.innerHTML = `
-      <div class="container">
-          <h1>Stock</h1>
-          <div class="stockTable-container">
-          
-            <table>
-                <colgroup >
-                    <col style="width: 5% ">
-                    <col style="width: 50% ">
-                    <col style="width: 25% ">
-                    <col style="width: 15%; text-align: right; ">
-                </colgroup>
-                <tr class="stockTable">
-                    <th>No.#</th>
-                    <th>Item</th>
-                    <th style="text-align: right;">Remain Qty</th>
-                </tr>
-                ${row}         
-            </table>
-          </div>
+    <div class="container">
+      <h1>Stock</h1>
+      <div class="stockTable-container">
+        <table class="stockTable"> <colgroup>
+            <col> <col> 
+            <col> 
+            <col style="text-align: right;"> 
+          </colgroup>
+          <thead> <tr class="stockTable-header"> 
+              <th>No.#</th>
+              <th>Item</th>
+              <th>Price</th> 
+              <th>Remain Qty</th>
+            </tr>
+          </thead>
+          <tbody> ${row} </tbody> </table>
       </div>
+    </div>
   `;
 }

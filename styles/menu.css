@@ -10,8 +10,6 @@
 
 .menu-book {
 	width: 70%;
-	background-color: rgb(212, 206, 218);
-	padding: 2%;
 	border-radius: 2em 0 0 2em;
 }
 
@@ -47,10 +45,8 @@
 }
 
 .checkout-box {
-	background-color: rgb(127, 129, 129);
 	color: rgb(0, 0, 0);
-	padding: 2em;
-	width: 30%;
+	width: 40%;
 	height: 100%;
 	border-radius: 0 2em 2em 0;
 }

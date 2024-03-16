@@ -1,4 +1,7 @@
-import { getDataFromSessionStorage } from '../utils.js';
+import {
+	getDataFromSessionStorage,
+	setDataInSessionStorage,
+} from '../utils.js';
 
 export default class UserModel {
 	constructor() {
@@ -34,25 +37,37 @@ export default class UserModel {
 		}
 		return user.password === password;
 	}
-	login(username, password) {
+	login(username, password, roleCode) {
 		if (!this.data) {
 			//if there is no data
 			return false;
 		}
-		const user = this.data.find((user) => user.username === username);
+		const user = this.data.find((user) => {
+			return user.username == username;
+		});
 		if (!user) {
 			//if user is not found
 			return false;
 		}
 
 		if (
-			this.data.find((user) => user.credentials === 0) &&
+			this.data.find((user) => user.credentials == roleCode) &&
 			this.data.find((user) => user.password === password)
 		) {
-			return 1; //admin
-		} else {
-			return 2; //user
+			let userObj = {
+				id: user.user_id,
+				firstName: user.first_name,
+			};
+
+			setDataInSessionStorage('loggedInCustomer', userObj);
+
+			return true;
 		}
+		return false;
+	}
+
+	getLoggedInCustomer() {
+		return getDataFromSessionStorage('loggedInCustomer');
 	}
 	changeRole(username, role) {
 		const user = this.data.find((user) => user.username === username);
@@ -61,5 +76,9 @@ export default class UserModel {
 		}
 		user.credentials = role;
 		return true;
+	}
+
+	logout() {
+		sessionStorage.removeItem('loggedInCustomer');
 	}
 }

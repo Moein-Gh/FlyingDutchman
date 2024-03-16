@@ -6,6 +6,6 @@ export async function orderController() {
 	await order.initialize();
 
 	let orders = order.getOrders();
-
-	renderOrders({ number: orders.length });
+	console.log(orders)
+	renderOrders(orders);
 }

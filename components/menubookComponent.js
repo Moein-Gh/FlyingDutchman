@@ -2,23 +2,7 @@ import { beerList } from './beerComponents.js';
 
 // Alan
 export let menuBook = (data) => {
-    return `
-        <div class="menu-category-container">
-            <ul>
-                <li class="all">All</li>
-                <li class="Food">Food</li>
-                <li class="Beverage">Beverage</li>
-            </ul>
-        </div>
-
-        <div class="menu-content-container">
-            <div id="menuBookPages">
-                    <div class="container">
-                        ${beerList(data?.beers)}
-                    </div>
-            </div>
-        </div>     
-	`;
+	return ` <div class="container">${beerList(data?.beers)}</div> `;
 };
 
 // export function Test() {

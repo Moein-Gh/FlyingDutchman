@@ -149,6 +149,8 @@ export default class Order {
 		// 4. Update session storage to reflect the change
 		setDataInSessionStorage(this.key, this.data);
 
+		sessionStorage.clear('currentOrder');
+
 		return `Order ${order_id} submitted`;
 	}
 
@@ -339,40 +341,6 @@ export default class Order {
 			return 'Item not found';
 		}
 		return itemObject.stock;
-	}
-
-	submitOrder(order_id) {
-		// 1. Find the order by its ID
-		let order = this.data.find((order) => order.id === order_id);
-
-		let orderItems = order.items;
-
-		let notifications = getDataFromSessionStorage('notifications');
-		for (item in orderItems) {
-			let itemStock = this.getItemOrderStock(item.id);
-			if (itemStock < 5) {
-				notifications.push({
-					id: notifications.length + 1,
-					order_id: order_id,
-					type: 'low_stock',
-					userType: 'staff',
-					message: 'Low stock alert for product',
-					productId: item.id,
-					notificationDate: Date.now(),
-					status: 'unread',
-				});
-			}
-		}
-
-		let orderIndex = this.data.findIndex((order) => order.id === order_id);
-
-		// 3. Update the order status
-		this.data[orderIndex].status = 'submitted';
-
-		// 4. Update session storage to reflect the change
-		setDataInSessionStorage(this.key, this.data);
-
-		return true;
 	}
 
 	removeOrder(order_id) {

@@ -7,18 +7,23 @@
 	height: 60px;
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	gap: 20px;
 	align-items: center;
 	justify-content: center;
 }
 
-.order-undo {
-	width: 40%;
-	height: 100%;
-	background-color: green;
-	color: white;
-	border-radius: 10px;
+.orderItemName {
+	width: 35%;
+}
+
+.orderItemQuantity {
+	width: 35%;
+	text-align: center;
+}
+.orderItemPrice {
+	width: 30%;
+	text-align: right;
 }
 .order-redo {
 	width: 40%;
@@ -26,4 +31,188 @@
 	color: white;
 	background-color: blue;
 	border-radius: 10px;
+	font-size: 2.5rem;
+}
+
+.orderContainer {
+	padding-top: 20px;
+}
+
+.order-title {
+	text-align: center;
+}
+
+.emptyOrder {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-radius: 15px;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	background-color: #fff;
+	padding: 1rem;
+	text-align: center;
+}
+
+.orderItems {
+	padding: 1rem 0rem;
+	border-top: 2px dashed rgba(0, 0, 0, 0.166);
+	border-bottom: 2px dashed rgba(0, 0, 0, 0.166);
+}
+.orderItem {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-radius: 15px;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	background-color: #fff;
+	padding: 1rem;
+}
+
+.orderItemsContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #33ab8f33;
+	padding: 20px;
+	border-radius: 15px;
+}
+
+.orderQuantityButton {
+	width: 30px;
+	border-radius: 5px;
+	background-color: #fff;
+	border: none;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	margin: 0px 15px;
+	height: 20px;
+}
+
+.orderButton {
+	display: inline-block;
+	transition: all 0.2s ease-in;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	color: #090909;
+	padding: 0.7em 1.7em;
+	cursor: pointer;
+	font-size: 18px;
+	border-radius: 0.5em;
+	background: #fff;
+	border: 1px solid #e8e8e8;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	height: 50px;
+	width: 25%;
+}
+
+.orderButton:active {
+	color: #666;
+	box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.orderButton:before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%) scaleY(1) scaleX(1.25);
+	top: 100%;
+	width: 140%;
+	height: 180%;
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 50%;
+	display: block;
+	transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+	z-index: -1;
+}
+
+.orderButton:after {
+	content: '';
+	position: absolute;
+	left: 55%;
+	transform: translateX(-50%) scaleY(1) scaleX(1.45);
+	top: 180%;
+	width: 160%;
+	height: 190%;
+	background-color: #009087;
+	border-radius: 50%;
+	display: block;
+	transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+	z-index: -1;
+}
+
+.orderButton:hover {
+	color: #ffffff;
+	border: 1px solid #009087;
+}
+
+.orderButton:hover:before {
+	top: -35%;
+	background-color: #009087;
+	transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.orderButton:hover:after {
+	top: -45%;
+	background-color: #009087;
+	transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.undoButton:hover:before {
+	background-color: #902b00;
+}
+
+.undoButton:hover:after {
+	background-color: #902b00;
+}
+
+.clearButton {
+	background-color: #ff8585;
+}
+.clearButton:hover:before {
+	background-color: #902b00;
+}
+
+.clearButton:hover:after {
+	background-color: #902b00;
+}
+
+.orderBottomContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 15px;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	background-color: #fff;
+	padding: 1rem;
+	margin-top: 20px;
+}
+
+.submitButton {
+	width: 100%;
+	color: black;
+	background-color: #b5d3003d;
+}
+
+.submitButton:hover {
+	color: #ffffff;
+	border: 1px solid #009087;
+}
+
+.submitButton:hover:before {
+	top: -35%;
+	background-color: #009087;
+	transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.submitButton:hover:after {
+	top: -45%;
+	background-color: #009087;
+	transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.orderBottomText {
+	line-height: 30px;
 }

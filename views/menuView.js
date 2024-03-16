@@ -12,9 +12,8 @@ export function renderMenu(data) {
 			${menuBook(data)}
 		</div>
 
-
 		<div class="checkout-box">
-			${orderUndoRedo(data?.currentOrder)}
+		  
 			${checkoutBox(data?.currentOrder)}
 		</div>
 

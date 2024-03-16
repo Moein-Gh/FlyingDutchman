@@ -52,6 +52,7 @@ nav ul li a:hover {
 	flex-direction: column;
 	flex: 1;
 	padding: 20px;
+	background-color: white;
 }
 
 footer {

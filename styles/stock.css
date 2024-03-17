@@ -1,4 +1,4 @@
-.stockTable-container{
+.stockTable-container {
     width: 100%;
     height: 75vh;
     border-radius: 1em;
@@ -7,27 +7,37 @@
     padding: 2em;
 }
 
-.stockTable-container table{
+.stockTable-container table {
     background-color: rgb(255, 255, 255);
     width: 100%;
-    border-radius: 1em;
-    
-
+    border-radius: 1em; 
 }
 
 .stockTable-container tr {
     height: 3em;
 }
 
-
 .stockTable th {
     text-align: left; /* Default alignment for headers */
-  }
-  
-  .stockTable td {
-   text-align: left; /* Default alignment for data cells */
-  }
-  
-   .stockTable td:last-child { /* Right align only the last cell */
+}
+
+.stockTable td {
+    text-align: left; /* Default alignment for data cells */
+}
+
+.stockTable td:last-child { /* Right align only the last cell */
     text-align: right;
-  }
+}
+
+.product-page-button {
+    background-color: #4CAF50; /* Example: Green background */
+    color: white;          
+    padding: 8px 16px;      /* Add some padding */
+    text-align: center;
+    text-decoration: none;  /* Remove default underline */
+    display: inline-block;  
+    font-size: 16px;        
+    border: none;           /* Remove default border */
+    border-radius: 4px;     /* Slightly rounded corners */
+    cursor: pointer;        /* Indicate clickability */
+}

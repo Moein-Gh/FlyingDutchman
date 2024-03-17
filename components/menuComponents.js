@@ -1,4 +1,4 @@
-import { beerList } from './beerComponents.js';
+import { beerList } from './beerComponents.js';	
 
 export let menuContainer = (data) => {
 	return `

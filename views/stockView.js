@@ -1,3 +1,5 @@
+
+
 export function renderStock(data) {
     const appContainer = document.getElementById('app');
 
@@ -6,12 +8,12 @@ export function renderStock(data) {
     let row = '';
     stockList.forEach(item => {
         row += '<tr>'
-        row += '<td>' + '#' + '</td>';
+        row += '<td>' + item.nr + '</td>';
         row += '<td>' + item.namn + '</td>';
         row += '<td>' + item.prisinklmoms + '</td>';
-        row += '<td style="text-align: right;>' + item.stock + '</td>';
-        row += '</tr>';
-
+        row += '<td>' + item.stock + '</td>';
+        row += '<td><button class="product-page-button" data-product-id="' + item.nr + '">Product Page</button></td>';
+        row += '</tr>'; 
     });
 
     appContainer.innerHTML = `

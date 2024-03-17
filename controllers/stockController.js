@@ -6,6 +6,16 @@ export async function StockController() {
 	await beerModel.initialize();
 
 	let StockPageBeers = beerModel.getBeers({ limit: 50 });
+	document.addEventListener('DOMContentLoaded', () => {
+		const productButtons = document.querySelectorAll('.product-page-button');
+	
+		productButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				const productId = button.dataset.productId;
+				window.location.href = `/product?id=${productId}`; 
+			});
+		});
+	});
 
 	let language = sessionStorage.getItem('language');
 

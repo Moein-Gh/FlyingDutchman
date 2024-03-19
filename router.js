@@ -1,4 +1,4 @@
-import { HomeController } from './controllers/homeController.js';
+
 import { MenuController } from './controllers/menuController.js';
 import { userController } from './controllers/userController.js';
 import { StockController } from './controllers/stockController.js';
@@ -14,7 +14,6 @@ import { staffLoginController } from './controllers/staffLoginController.js';
 const commandStack = new CommandStack();
 
 const routes = {
-	'/': HomeController,
 	'/menu': MenuController,
 	'/login': userController,
 	'/stock': StockController,
@@ -66,9 +65,17 @@ document.addEventListener('click', function (event) {
 	}
 });
 
+
 export function initRouter() {
-	handleRouteChange();
-	window.addEventListener('hashchange', handleRouteChange);
+    // If there's no hash in the URL, redirect to the menu route 
+    if (window.location.hash === '') {
+        window.location.hash = '/menu'; 
+		handleRouteChange();
+    } else {
+        handleRouteChange(); // Handle existing hash-based routes 
+    }
+
+    window.addEventListener('hashchange', handleRouteChange);
 }
 
 function headerELs() {

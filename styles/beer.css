@@ -97,3 +97,33 @@
 	transform: scaleX(1.4) scaleY(1.6);
 	opacity: 0;
 }
+
+.productContainer {
+	max-width: 600px;
+	margin: 20px auto;
+	background: #fff;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	font-family: Arial, sans-serif;
+}
+.product-name,
+.product-price,
+.product-type,
+.product-stock {
+	font-size: 18px;
+	margin: 10px 0;
+}
+.product-name {
+	font-size: 24px;
+	color: #333;
+}
+.product-price {
+	font-size: 20px;
+	color: #007bff;
+}
+.stock-available {
+	color: #28a745;
+}
+.stock-out {
+	color: #dc3545;
+}

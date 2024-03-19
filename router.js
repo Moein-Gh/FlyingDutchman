@@ -4,10 +4,12 @@ import { userController } from './controllers/userController.js';
 import { StockController } from './controllers/stockController.js';
 import { profileController } from './controllers/profileController.js';
 import { CommandStack } from './CommandStack.js';
-import { TableOrderController } from './controllers/tableOrderController.js'; //Sheng-Yu
+import { TableOrderController } from './controllers/tableOrderController.js';
 import { orderController } from './controllers/orderController.js';
 import { renderHeader } from './components/headerComponents.js';
 import UserModel from './models/userModel.js';
+import { productController } from './controllers/productController.js';
+import { orderSummaryController } from './controllers/orderSummaryController.js';
 const commandStack = new CommandStack();
 
 const routes = {
@@ -16,12 +18,24 @@ const routes = {
 	'/login': userController,
 	'/stock': StockController,
 	'/profile': profileController,
-	'/table/order': TableOrderController, //Sheng-Yu
+	'/table/order': TableOrderController,
 	'/orders': orderController,
+	'/product': productController,
+	'/orderSummary': orderSummaryController,
 };
 
 export function handleRouteChange() {
-	const path = window.location.hash.substr(1) || '/';
+	const fullPath = window.location.hash.substr(1) || '/';
+	let path = fullPath;
+	let params = {};
+
+	// Check if the route contains parameters (indicated by ":")
+	if (path.includes('/:')) {
+		const [route, param] = path.split('/:');
+		path = route;
+		params = { id: param }; // Example: Assuming a single "id" parameter
+	}
+
 	const routeHandler = routes[path];
 	if (routeHandler) {
 		let loggedInCustomer = sessionStorage.getItem('loggedInCustomer');
@@ -32,12 +46,11 @@ export function handleRouteChange() {
 			language: sessionStorage.getItem('language'),
 		});
 		headerELs();
-		routeHandler(commandStack);
+		routeHandler(commandStack, params); // Pass params to the route handler
 	} else {
 		console.error('Route not found:', path);
 	}
 }
-
 document.addEventListener('click', function (event) {
 	if (
 		event.target.tagName === 'A' &&

@@ -182,5 +182,15 @@ export async function MenuController(commandStack) {
 			orderModel.submitOrder(currentOrder.id);
 			MenuController(commandStack);
 		});
+
+		let submitOrderBtn = document.querySelector('.submitButton');
+
+		submitOrderBtn.addEventListener('click', function () {
+			const currentOrder = orderModel.getCurrentOrder();
+			let id = currentOrder.id;
+
+			let result = orderModel.submitOrder(id);
+			if (result) window.location.hash = '#/orderSummary';
+		});
 	}
 }

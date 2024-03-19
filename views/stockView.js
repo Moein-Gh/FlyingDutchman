@@ -1,22 +1,20 @@
-
-
 export function renderStock(data) {
-    const appContainer = document.getElementById('app');
+	const appContainer = document.getElementById('app');
 
-    let stockList = data?.beers;
+	let stockList = data?.beers;
 
-    let row = '';
-    stockList.forEach(item => {
-        row += '<tr>'
-        row += '<td>' + item.nr + '</td>';
-        row += '<td>' + item.namn + '</td>';
-        row += '<td>' + item.prisinklmoms + '</td>';
-        row += '<td>' + item.stock + '</td>';
-        row += '<td><button class="product-page-button" data-product-id="' + item.nr + '">Product Page</button></td>';
-        row += '</tr>'; 
-    });
+	let row = '';
+	stockList.forEach((item) => {
+		row += '<tr>';
+		row += '<td>' + item.nr + '</td>';
+		row += '<td>' + item.namn + '</td>';
+		row += '<td>' + item.prisinklmoms + '</td>';
+		row += '<td>' + item.stock + '</td>';
+		row += `<td><button id="productPage_${item.nr}" class="product-page-button" data-product-id="' + item.nr + '">Product Page</button></td>`;
+		row += '</tr>';
+	});
 
-    appContainer.innerHTML = `
+	appContainer.innerHTML = `
     <div class="container">
       <h1>Stock</h1>
       <div class="stockTable-container">

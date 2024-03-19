@@ -13,7 +13,6 @@ export function renderMenu(data) {
 		</div>
 
 		<div class="checkout-box">
-		  
 			${checkoutBox(data?.currentOrder)}
 		</div>
 

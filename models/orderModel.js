@@ -45,7 +45,6 @@ export default class Order {
 		}
 
 		let tables = getDataFromSessionStorage('tables');
-
 		function getFirstEmptyTable(tables) {
 			let table = tables.find((table) => table.status === 'available');
 			if (table) {
@@ -132,26 +131,14 @@ export default class Order {
 		return this.data[orderIndex] ?? previousOrder; // Return the restored order
 	}
 
-	submitOrder(order_id) {
-		// 1. Find the order by its ID
-		let orderIndex = this.data.findIndex(
-			(order) => order.order_id === order_id
-		);
-
-		// 2. Check if the order exists
-		if (orderIndex === -1) {
-			return 'Order not found';
-		}
-
-		// 3. Update the order status
-		this.data[orderIndex].status = 'submitted';
-
-		// 4. Update session storage to reflect the change
+	submitOrder() {
+		let order = this.getCurrentOrder();
+		order.status = 'submitted';
+		this.data.push(order);
 		setDataInSessionStorage(this.key, this.data);
-
-		sessionStorage.clear('currentOrder');
-
-		return `Order ${order_id} submitted`;
+		sessionStorage.removeItem('currentOrder');
+		setDataInSessionStorage('submittedOrderId', order.id);
+		return true;
 	}
 
 	addItemToOrder({ order_id, product_id, quantity = 1 }) {

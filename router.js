@@ -10,6 +10,7 @@ import { renderHeader } from './components/headerComponents.js';
 import UserModel from './models/userModel.js';
 import { productController } from './controllers/productController.js';
 import { orderSummaryController } from './controllers/orderSummaryController.js';
+import { staffLoginController } from './controllers/staffLoginController.js';
 const commandStack = new CommandStack();
 
 const routes = {
@@ -22,6 +23,7 @@ const routes = {
 	'/orders': orderController,
 	'/product': productController,
 	'/orderSummary': orderSummaryController,
+	'/staffLogin': staffLoginController,
 };
 
 export function handleRouteChange() {
@@ -51,6 +53,7 @@ export function handleRouteChange() {
 		console.error('Route not found:', path);
 	}
 }
+
 document.addEventListener('click', function (event) {
 	if (
 		event.target.tagName === 'A' &&
@@ -84,7 +87,12 @@ function headerELs() {
 
 	let loginButton = document.querySelector('.header-login-button');
 	loginButton?.addEventListener('click', () => {
-		window.location.hash = '/menu';
+		window.location.hash = '/login';
+		handleRouteChange();
+	});
+	let staffLoginButton = document.querySelector('.header-login-button-staff');
+	staffLoginButton?.addEventListener('click', () => {
+		window.location.hash = '/staffLogin';
 		handleRouteChange();
 	});
 

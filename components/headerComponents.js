@@ -32,9 +32,16 @@ function loginSection(loggedInCustomer, language) {
 	</div>`;
 	} else {
 		return `<div class="flexCenter loginSection">
-			<a href="#/login">
-				<button class="header-login-button">Login</button>
+			<a >
+				<button class="header-login-button">Customer Login</button>
+				
 			</a>
+			<a >
+			<button class="header-login-button-staff">Staff Login</button>
+				
+			</a>
+
+
 		</div>`;
 	}
 }

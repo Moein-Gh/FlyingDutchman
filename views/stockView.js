@@ -1,3 +1,5 @@
+import { dictionary } from '../dictionary.js';
+
 export function renderStock(data) {
 	const appContainer = document.getElementById('app');
 
@@ -10,13 +12,17 @@ export function renderStock(data) {
 		row += '<td>' + item.namn + '</td>';
 		row += '<td>' + item.prisinklmoms + '</td>';
 		row += '<td>' + item.stock + '</td>';
-		row += `<td><button id="productPage_${item.nr}" class="product-page-button" data-product-id="' + item.nr + '">Product Page</button></td>`;
+		row += `<td><button id="productPage_${
+			item.nr
+		}" class="product-page-button" data-product-id="' + item.nr + '">${
+			dictionary.ProductPage[sessionStorage.getItem('language') || 'en']
+		}</button></td>`;
 		row += '</tr>';
 	});
 
 	appContainer.innerHTML = `
     <div class="container">
-      <h1>Stock</h1>
+      <h1>${dictionary.Stock[sessionStorage.getItem('language') || 'en']}</h1>
       <div class="stockTable-container">
         <table class="stockTable"> <colgroup>
             <col> <col> 
@@ -24,10 +30,20 @@ export function renderStock(data) {
             <col style="text-align: right;"> 
           </colgroup>
           <thead> <tr class="stockTable-header"> 
-              <th>No.#</th>
-              <th>Item</th>
-              <th>Price</th> 
-              <th>Remain Qty</th>
+              <th>${
+								dictionary.No[sessionStorage.getItem('language') || 'en']
+							}</th>
+              <th>${
+								dictionary.Item[sessionStorage.getItem('language') || 'en']
+							}</th>
+              <th>${
+								dictionary.Price[sessionStorage.getItem('language') || 'en']
+							}</th> 
+              <th>${
+								dictionary.RemainingQty[
+									sessionStorage.getItem('language') || 'en'
+								]
+							}</th>
             </tr>
           </thead>
           <tbody> ${row} </tbody> </table>

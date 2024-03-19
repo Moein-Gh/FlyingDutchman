@@ -73,7 +73,9 @@ const createRow = (item) => {
 export function checkoutBox(currentOrder) {
 	let rows = currentOrder.items.length
 		? currentOrder.items.map(createRow).join('')
-		: '<div class="emptyOrder">No items in order</div>';
+		: `<div class="emptyOrder">${
+				dictionary.NoItemsInOrder[sessionStorage.getItem('language') || 'en']
+		  }</div>`;
 
 	return `
 		<div class="orderContainer">
@@ -83,15 +85,21 @@ export function checkoutBox(currentOrder) {
 			<br />
 			<div class="orderItemsContainer">
 				${orderUndoRedo(currentOrder)}
-				<div class=${dictionary.OrderItems[sessionStorage.getItem('language') || 'en']}>${rows}</div>
+				<div class=${
+					dictionary.OrderItems[sessionStorage.getItem('language') || 'en']
+				}>${rows}</div>
 
 				<div class="orderBottomContainer">
 					<div class="orderBottomText">
-						<h3>Total : ${Math.ceil(currentOrder.total) || 0} SEK</h3>
-						<h4>Discount : -</h4>
+						<h3>${dictionary.Total[sessionStorage.getItem('language') || 'en']} : ${
+		Math.ceil(currentOrder.total) || 0
+	} SEK</h3>
+						<h4>${dictionary.Discount[sessionStorage.getItem('language') || 'en']} : -</h4>
 					</div>
 					<div class="orderSubmitContainer">
-						<button class="orderButton submitButton">Submit Order</button>
+						<button class="orderButton submitButton">${
+							dictionary.SubmitOrder[sessionStorage.getItem('language') || 'en']
+						}</button>
 					</div>
 				</div>
 			</div>

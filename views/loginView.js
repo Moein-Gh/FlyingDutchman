@@ -1,3 +1,5 @@
+import { dictionary } from '../dictionary.js';
+
 export function renderLogin(data) {
 	const appContainer = document.getElementById('app');
 
@@ -12,15 +14,21 @@ export function renderLogin(data) {
 				<form action="/login" method="post">
 					<div class="inp">
 						<input type="text" id="username" name="username" placeholder="&nbsp;" required />
-						<span class="label">Username</span>
+						<span class="label">${
+							dictionary.UserName[sessionStorage.getItem('language') || 'en']
+						}</span>
 						<span class="focus-bg"></span>
 					</div>
 					<div class="inp">
 						<input type="password" id="password" name="password" placeholder="&nbsp;" required />
-						<span class="label">Password</span>
+						<span class="label">${
+							dictionary.Password[sessionStorage.getItem('language') || 'en']
+						}</span>
 						<span class="focus-bg"></span>
 					</div>
-					<button type=submit class="loginButton" role="button">Loginx</button>
+					<button type=submit class="loginButton" role="button">${
+						dictionary.Login[sessionStorage.getItem('language') || 'en']
+					}</button>
 				</form>
 			</div>
 		</div>

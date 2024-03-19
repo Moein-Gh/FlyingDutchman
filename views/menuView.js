@@ -2,7 +2,6 @@ import { checkoutBox } from '../components/checkoutBoxComponent.js';
 import { menuBook } from '../components/menubookComponent.js';
 import { orderUndoRedo } from '../components/undoRedoComponents.js';
 
-
 export function renderMenu(data) {
 	const appContainer = document.getElementById('app');
 

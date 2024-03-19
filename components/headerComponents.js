@@ -26,23 +26,27 @@ function loginSection(loggedInCustomer, language) {
 	if (loggedInCustomer) {
 		return `<div class="flexCenter loginSection">
 		
-		<h2>${dictionary.Hello[sessionStorage.getItem('language') || 'en']} ${loggedInCustomer?.firstName}</h2>
+		<h2>${dictionary.Hello[sessionStorage.getItem('language') || 'en']} ${
+			loggedInCustomer?.firstName
+		}</h2>
 		
-		<button class="header-logout-button">logout</button>
+		<button class="header-logout-button">${
+			dictionary.LogOut[sessionStorage.getItem('language') || 'en']
+		}</button>
 
 	</div>`;
 	} else {
 		return `<div class="flexCenter loginSection">
-			<a >
-				<button class="header-login-button">Customer Login</button>
-				
+			<a>
+				<button class="header-login-button">
+					${dictionary.CustomerLogin[sessionStorage.getItem('language') || 'en']}
+				</button>
 			</a>
-			<a >
-			<button class="header-login-button-staff">Staff Login</button>
-				
+			<a>
+				<button class="header-login-button-staff">
+					${dictionary.StaffLogin[sessionStorage.getItem('language') || 'en']}
+				</button>
 			</a>
-
-
 		</div>`;
 	}
 }

@@ -1,19 +1,21 @@
-import { dictionary } from '../utils/dictionary.js';
+import { dictionary } from '../dictionary.js';
 export function renderOrderSummary(data) {
 	const appContainer = document.getElementById('app');
 
 	appContainer.innerHTML = `
 	<div class="summary-container">
-	<div class="summary-header">${dictionary.OrderSummary[sessionStorage.getItem('language') || 'en']}</div>
-	<div class="summary-row"><strong>${dictionary.OrderNumber[sessionStorage.getItem('language') || 'en']}:</strong> ${
-		data.orderNumber
+	<div class="summary-header">${
+		dictionary.OrderSummary[sessionStorage.getItem('language') || 'en']
 	}</div>
-	<div class="summary-row"><strong>${dictionary.CustomerName[sessionStorage.getItem('language') || 'en']}:</strong> ${
-		data.customerName
-	}</div>
-	<div class="summary-row"><strong>${dictionary.ShippingAdress[sessionStorage.getItem('language') || 'en']}:</strong> ${
-		data.shippingAddress
-	}</div>
+	<div class="summary-row"><strong>${
+		dictionary.OrderNumber[sessionStorage.getItem('language') || 'en']
+	}:</strong> ${data.orderNumber}</div>
+	<div class="summary-row"><strong>${
+		dictionary.CustomerName[sessionStorage.getItem('language') || 'en']
+	}:</strong> ${data.customerName}</div>
+	<div class="summary-row"><strong>${
+		dictionary.ShippingAdress[sessionStorage.getItem('language') || 'en']
+	}:</strong> ${data.shippingAddress}</div>
 	${data.items
 		.map(
 			(item) => `
@@ -25,7 +27,9 @@ export function renderOrderSummary(data) {
 		)
 		.join('')}
 	<div class="summary-footer">
-			<strong>Total:</strong>
+			<strong>${
+				dictionary.Total[sessionStorage.getItem('language') || 'en']
+			}:</strong>
 			<strong>${data.total}</strong>
 	</div>
 </div>

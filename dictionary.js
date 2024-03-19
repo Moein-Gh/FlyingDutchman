@@ -3,19 +3,19 @@ export const dictionary = {
 		en: 'Order',
 		se: 'Beställning',
 	},
-	'Order number': {
+	OrderNumber: {
 		en: 'Order number',
 		se: 'Beställningsnummer',
 	},
-	'Order date': {
+	OrderDate: {
 		en: 'Order date',
 		se: 'Beställningsdatum',
 	},
-	'Order status': {
+	OrderStatus: {
 		en: 'Order status',
 		se: 'Beställningsstatus',
 	},
-	'Order total': {
+	OrderTotal: {
 		en: 'Order total',
 		se: 'Beställningens total',
 	},
@@ -23,7 +23,7 @@ export const dictionary = {
 		en: 'Log in',
 		se: 'Logga in',
 	},
-	'Log out': {
+	LogOut: {
 		en: 'Log out',
 		se: 'Logga ut',
 	},
@@ -59,7 +59,7 @@ export const dictionary = {
 		en: 'Redo',
 		se: 'Gör om',
 	},
-	'Submit Order': {
+	SubmitOrder: {
 		en: 'Submit Order',
 		se: 'Skicka beställning',
 	},
@@ -75,10 +75,6 @@ export const dictionary = {
 		en: 'Order Summary',
 		se: 'Beställningsöversikt',
 	},
-	OrderNumber: {
-		en: 'Order number',
-		se: 'Beställningsnummer',
-	},
 	CustomerName: {
 		en: 'Customer Name',
 		se: 'Kundnamn',
@@ -86,5 +82,45 @@ export const dictionary = {
 	ShippingAdress: {
 		en: 'Shipping Adress',
 		se: 'Leveransadress',
+	},
+	Beer: {
+		en: 'Beers',
+		se: 'Öl',
+	},
+	NoItemsInOrder: {
+		en: 'No items in order',
+		se: 'Inga artiklar i beställningen',
+	},
+	RemainingQty: {
+		en: 'Remaining Qty',
+		se: 'Återstående antal',
+	},
+	No: {
+		en: 'No.#',
+		se: 'Nr.#',
+	},
+	ProductPage: {
+		en: 'Product Page',
+		se: 'Produktsida',
+	},
+	Stock: {
+		en: 'Stock',
+		se: 'Lager',
+	},
+	Password: {
+		en: 'Password',
+		se: 'Lösenord',
+	},
+	UserName: {
+		en: 'User Name',
+		se: 'Användarnamn',
+	},
+	CustomerLogin: {
+		en: 'Customer Login',
+		se: 'Kundinloggning',
+	},
+	StaffLogin: {
+		en: 'Staff Login',
+		se: 'Personalinloggning',
 	},
 };

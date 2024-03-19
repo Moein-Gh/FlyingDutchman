@@ -1,3 +1,5 @@
+import { dictionary } from '../dictionary.js';
+
 export let beerCard = (beer) => {
 	return `
 		<div id="beerCard_${beer.nr}" class="beer-card" draggable=true>
@@ -18,7 +20,9 @@ export let beerList = (beers) => {
 
 	return `
 		<div class="beers">
-			<h1 class=beers-title>Beers</h1>
+			<h1 class=beers-title>${
+				dictionary.Beer[sessionStorage.getItem('language') || 'en']
+			}</h1>
       	<br>
 			<div class="beers-list">${list}</div>
 		</div>

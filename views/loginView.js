@@ -20,7 +20,7 @@ export function renderLogin(data) {
 						<span class="label">Password</span>
 						<span class="focus-bg"></span>
 					</div>
-					<button type=submit class="loginButton" role="button">Login</button>
+					<button type=submit class="loginButton" role="button">Loginx</button>
 				</form>
 			</div>
 		</div>

@@ -78,12 +78,12 @@ export function checkoutBox(currentOrder) {
 	return `
 		<div class="orderContainer">
 			<h1 class="order-title">${
-				dictionary.text1[sessionStorage.getItem('language') || 'en']
+				dictionary.Order[sessionStorage.getItem('language') || 'en']
 			}</h1>
 			<br />
 			<div class="orderItemsContainer">
 				${orderUndoRedo(currentOrder)}
-				<div class="orderItems">${rows}</div>
+				<div class=${dictionary.OrderItems[sessionStorage.getItem('language') || 'en']}>${rows}</div>
 
 				<div class="orderBottomContainer">
 					<div class="orderBottomText">

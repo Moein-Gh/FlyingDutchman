@@ -1,3 +1,4 @@
+import { dictionary } from '../dictionary.js';
 export function renderHeader({ loggedInCustomer, language }) {
 	let header = document.querySelector('header');
 	header.innerHTML = `
@@ -25,7 +26,7 @@ function loginSection(loggedInCustomer, language) {
 	if (loggedInCustomer) {
 		return `<div class="flexCenter loginSection">
 		
-		<h2>Hello ${loggedInCustomer?.firstName}</h2>
+		<h2>${dictionary.Hello[sessionStorage.getItem('language') || 'en']} ${loggedInCustomer?.firstName}</h2>
 		
 		<button class="header-logout-button">logout</button>
 

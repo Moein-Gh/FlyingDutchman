@@ -1,16 +1,17 @@
+import { dictionary } from '../utils/dictionary.js';
 export function renderOrderSummary(data) {
 	const appContainer = document.getElementById('app');
 
 	appContainer.innerHTML = `
 	<div class="summary-container">
-	<div class="summary-header">Order Summary</div>
-	<div class="summary-row"><strong>Order Number:</strong> ${
+	<div class="summary-header">${dictionary.OrderSummary[sessionStorage.getItem('language') || 'en']}</div>
+	<div class="summary-row"><strong>${dictionary.OrderNumber[sessionStorage.getItem('language') || 'en']}:</strong> ${
 		data.orderNumber
 	}</div>
-	<div class="summary-row"><strong>Customer Name:</strong> ${
+	<div class="summary-row"><strong>${dictionary.CustomerName[sessionStorage.getItem('language') || 'en']}:</strong> ${
 		data.customerName
 	}</div>
-	<div class="summary-row"><strong>Shipping Address:</strong> ${
+	<div class="summary-row"><strong>${dictionary.ShippingAdress[sessionStorage.getItem('language') || 'en']}:</strong> ${
 		data.shippingAddress
 	}</div>
 	${data.items

@@ -13,8 +13,8 @@ export function renderTableOrder(orderOfTable) {
         <button>← Back To Table</button>
         <h1>Order ID: ${orderOfTable.orderOfTable.id} / Table ${orderOfTable.orderOfTable.tableNumber}</h1>
         <div>
-        <h5>Payment Status: </h5>
-        <h5>${orderOfTable.orderOfTable.paymentStatus}</h5>
+        <h6>Payment Status: </h6>
+        <h2>${orderOfTable.orderOfTable.paymentStatus}</h2>
         </div>
     </div>
     <!-- <h1 class="Yu-orderPageTitle">{Order}/ {Table}</h1> -->
@@ -39,7 +39,7 @@ export function renderTableOrder(orderOfTable) {
             </div>
             <div class="Yu-orderSectionBottomRow_3">
                 <button onClick="">Save & Submit</button>
-                <button onClick="">Checkout</button>
+                <button id = "Yu-orderTableCheckoutBtn">Checkout</button>
             </div>
 
         </div>

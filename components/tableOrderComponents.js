@@ -9,19 +9,24 @@ export let creatTableOrderEntry = (item, index) => {
             <td>#${entryNumber}</td>
             <td style="font-weight:bold;">${item.name}</td>
             <td>
-                <div>
+                <div class="Yu-itemQtyColumn">
                     <button id="qtyAddBtn_${item.product_id}" class="AddQtyButton">+</button>
                     <h3 id="qtyNumber_${item.product_id}">${item.quantity}</h3>
                     <button id="qtySubBtn_${item.product_id}" class="SubQtyButton">-</button>
                 </div>
             </td>
-            <td>
-                <div>
-                    <h3>$</h3><input id="Yu-orderPrice" name="orderPrice" value="${item.price_per_unit}">
-                </div>
-            </td>
-            <td><input id="Yu-orderComment" name="orderComment" value="No Comment"></td>
+            <label for="Yu-orderPrice">
+                <td>
+                    <div>
+                        <h3>$</h3>
+                        <input  id="Yu-orderPrice_${item.product_id}" class="Yu-itemPrice" name="price_per_unit" value="${item.price_per_unit}">
+                        <button id="Yu-orderPriceBtn_${item.product_id}" class="Yu-itemPriceBtn">Save</button>
+                    </div>
+                </td>
+                <td><textarea  id="Yu-orderComment" name="order_Comment">No Comment</textarea ></td>
+            </label>
             <td><button id="delOrderEntryBtn_${item.product_id}_${index}" class="delOrderEntryBtn">Del</button></td>
+
         </tr>
     `;
 };
@@ -35,10 +40,10 @@ export let orderTable = (orderOfTableItems) => {
     <div class="Yu-orderTableContainer">
     <table>
         <colgroup>
-            <col style="width: 10%; ">
-            <col style="width: 30%; ">
+            <col style="width: 5%; ">
+            <col style="width: 25%; ">
             <col style="width: 20%; ">
-            <col style="width: 10%; ">
+            <col style="width: 20%; ">
             <col style="width: 20%; ">
             <col style="width: 10%; ">
         </colgroup>

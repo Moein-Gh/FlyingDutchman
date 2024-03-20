@@ -1,16 +1,30 @@
 /* Sheng-Yu */
 
 .Yu-orderPageTitle {
-    margin: 1%;
-    background-color: aqua;
+    margin-bottom: 1%;
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 0.5em;
     font-size:3vh;
     text-align: center;
     display: flex;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Yu-orderPageTitle button{
     flex: none;
+    background-color: rgb(255, 255, 255);
     width: 10%;
+    border-radius: 0.5em 0 0 0.5em;
+	/* border:none; */
+    border-color: rgb(255, 255, 255);
+    border-width: 1px;
+	/* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.Yu-orderPageTitle button:hover {
+	background: #979797;
+	cursor:pointer;
 }
 
 .Yu-orderPageTitle h1{
@@ -18,19 +32,26 @@
     width: 70%;
 }
 
+.Yu-orderPageTitle h1{
+    flex: none;
+    font-weight: bolder;
+}
+
 
 
 .Yu-orderSectionContainer {
     height: 83vh;
     width: 100%;
-    background-color: gray;
+    background-color: rgb(209, 209, 209);
     padding: 1%;
+    border-radius: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 .Yu-orderTableContainer {
     height: 80%;
-    background-color: yellow;
+    background-color: white;
     overflow: scroll;
 }
 
@@ -39,28 +60,50 @@
     width: 100%;
     max-height: 100%;
     border: 3px solid;
+    border-color: rgb(196, 196, 196);
 }
 
 .Yu-orderTableContainer tr {
     text-align: center;
-    border: 3px solid;
     height: 3em;
+    
+    /* border: 3px solid; */
 }
 
 .Yu-orderTableContainer th {
     text-align: center;
-    border: 3px solid;
+    border: 3px  ;
+    background-color: #d3d1d1;
+    
 }
 
 .Yu-orderTableContainer td {
     text-align: center;
-    border: 3px solid;
+    border: 3px  ;
+    padding: 2%;
 }
 
 .Yu-orderTableContainer td button{
     text-align: center;
-    width: 25%;
+    display: inline-block;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: bolder;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    border-color: #979797;
+
 }
+
+.Yu-orderTableContainer td button:hover{
+    background-color: #d4d4d4;
+    color: #000000;
+
+}
+
 
 .Yu-orderTableContainer td h3{
     text-align: center;
@@ -72,6 +115,31 @@
     display: flex;
     justify-content: center;
 }
+
+
+.Yu-itemPrice{
+    width: 45%;
+    text-align: right;
+    margin-right: 3%;
+}
+
+.Yu-itemPriceBtn{
+    width: 30%;
+}
+
+.delOrderEntryBtn{
+    width: 60%;
+}
+
+.AddQtyButton{
+    width:20%;
+}
+
+.SubQtyButton{
+    width:20%;
+}
+
+
 
 #Yu-orderPrice{
     width: 50%;
@@ -88,29 +156,35 @@
 
 
 .Yu-orderSectionBottomContainer{
+    margin: 1%;
     height:20%;
-    background-color: blueviolet;
+    
 }
 
 .Yu-orderSectionBottomRow_1{
     display: flex;
     justify-content: flex-end;
-    height: 33%;
-    background-color: #d40505;
+    height: 32%;
+    
 }
 
 .Yu-orderSectionBottomRow_2{
     display: flex;
     justify-content: flex-end;
-    background-color: #c15b5b;
-    height: 33%;
+    height: 32%;
 }
+
+.Yu-orderSectionBottomRow_2 input{
+    width: 5%;
+    text-align: center;
+}
+
+
 
 .Yu-orderSectionBottomRow_3{
     display: flex;
     justify-content: flex-end;
-    background-color: #6dc388;
-    height: 33%;
+    height: 32%;
 }
 
 .Yu-orderSectionBottomRow_3 button{
@@ -118,6 +192,14 @@
     width: 20%;
     text-align: center;
     margin: 3px;
+    border-radius: 1em;
+	border:none;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Yu-orderSectionBottomRow_3 button:hover {
+	background: #979797;
+	cursor:pointer;
 }
 
 

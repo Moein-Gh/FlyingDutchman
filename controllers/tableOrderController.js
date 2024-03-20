@@ -86,7 +86,6 @@ export async function TableOrderController(commandStack) {
                     product_id: productId,
                     quantity: orderQuantity,
                 };
-                //tmp
                 const removeFromOrderCommand = {
                     execute: async (args) => {
                         await orderModel.removeFromOrder(args);
@@ -103,8 +102,54 @@ export async function TableOrderController(commandStack) {
             });
         });
 
+        // Checkout
+        let CheckoutBtn = document.querySelector('#Yu-orderTableCheckoutBtn');
+        CheckoutBtn.addEventListener('click', async () => {
+            let args = orderOfTable.id;
+            const checkoutCommand = {
+                execute: async (args) => {
+                    await orderModel.markOrderAsPaid(args);
+                    TableOrderController(commandStack);
+                },
+                value: args,
+                undoValue: args,
+            };
+            commandStack.execute(checkoutCommand);
+        });
 
+
+        // Change Item Price
+        let priceChangeBtn = document.querySelectorAll('.Yu-itemPriceBtn');
+        priceChangeBtn.forEach((button) => {
+            button.addEventListener('click', async () => {
+                let productId = button.id.split('_')[1];
+                let newPrice = document.getElementById('Yu-orderPrice_' + productId)
+                console.log("NewPrice:", newPrice.value);
+                let args = {
+                    order_id: orderOfTable.id,
+                    product_id: productId,
+                    new_price: newPrice.value,
+                };
+                //console.log("Args:", args);
+                const changePriceCommand = {
+                    execute: async (args) => {
+                        await orderModel.changedOrderItemPrice(args);
+                        TableOrderController(commandStack);
+                    },
+                    undo: async (args) => {
+                        await orderModel.changedOrderItemPrice(args);
+                        TableOrderController(commandStack);
+                    },
+                    value: args,
+                    undoValue: args,
+                };
+                commandStack.execute(changePriceCommand);
+            });
+        });
     }
+
+
+
 
 }
 

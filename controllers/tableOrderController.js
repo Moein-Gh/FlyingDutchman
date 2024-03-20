@@ -105,7 +105,8 @@ export async function TableOrderController(commandStack) {
         // Checkout
         let CheckoutBtn = document.querySelector('#Yu-orderTableCheckoutBtn');
         CheckoutBtn.addEventListener('click', async () => {
-            let args = orderOfTable.id;
+            const orderOfTableID = orderOfTable.id;
+            let args = { orderOfTableID };
             const checkoutCommand = {
                 execute: async (args) => {
                     await orderModel.markOrderAsPaid(args);
@@ -146,6 +147,40 @@ export async function TableOrderController(commandStack) {
                 commandStack.execute(changePriceCommand);
             });
         });
+
+
+
+        // Add Comment
+        let checkoutBtn = document.getElementById('Yu-orderTableSaveBtn');
+        checkoutBtn.addEventListener('click', async () => {
+            console.log('clicked');
+            let inputComments = document.querySelectorAll('.orderItem_Comment');
+            inputComments.forEach((input) => {
+                let productId = input.id.split('_')[1];
+                let comment = document.getElementById('Yu-orderItemComment_' + productId)
+                console.log("Comment:", comment.value);
+                let args = {
+                    order_id: orderOfTable.id,
+                    product_id: productId,
+                    comment: comment.value,
+                };
+                //console.log("Args:", args);
+                const addOrderItemCommentCommand = {
+                    execute: async (args) => {
+                        await orderModel.addOrderItemComment(args);
+                        TableOrderController(commandStack);
+                    },
+                    undo: async (args) => {
+                        await orderModel.addOrderItemComment(args);
+                        TableOrderController(commandStack);
+                    },
+                    value: args,
+                    undoValue: args,
+                };
+                commandStack.execute(addOrderItemCommentCommand);
+            })
+        });
+
     }
 
 

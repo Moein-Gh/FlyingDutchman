@@ -23,7 +23,7 @@ export let creatTableOrderEntry = (item, index) => {
                         <button id="Yu-orderPriceBtn_${item.product_id}" class="Yu-itemPriceBtn">Save</button>
                     </div>
                 </td>
-                <td><textarea  id="Yu-orderComment" name="order_Comment">No Comment</textarea ></td>
+                <td><textarea  id="Yu-orderItemComment_${item.product_id}" class="orderItem_Comment">${item.comment}</textarea ></td>
             </label>
             <td><button id="delOrderEntryBtn_${item.product_id}_${index}" class="delOrderEntryBtn">Del</button></td>
 

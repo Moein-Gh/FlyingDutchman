@@ -38,7 +38,7 @@ export function renderTableOrder(orderOfTable) {
                 <h1>ppl.</h1>
             </div>
             <div class="Yu-orderSectionBottomRow_3">
-                <button onClick="">Save & Submit</button>
+                <button id = "Yu-orderTableSaveBtn">Save & Submit</button>
                 <button id = "Yu-orderTableCheckoutBtn">Checkout</button>
             </div>
 

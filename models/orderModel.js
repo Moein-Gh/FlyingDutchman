@@ -192,6 +192,7 @@ export default class Order {
 				quantity,
 				price_per_unit: beer.prisinklmoms,
 				paid: false,
+				comment: 'No Comment'
 			});
 		}
 
@@ -294,14 +295,13 @@ export default class Order {
 	}
 
 	markOrderAsPaid(order_id) {
-		console.log('order ID:', order_id);
+		// console.log('order ID:', order_id);
 		// 1. Find the order by its ID
 		let orderIndex = this.data.findIndex(
-			(order) => order.id === order_id
+			(order) => order.id === order_id.orderOfTableID
 		);
-		console.log('orderIndex:', orderIndex);
-		console.log(this.data);
-		console.log(orderIndex);
+		// console.log('orderIndex:', orderIndex);
+		// console.log('TThiis Data', this.data);
 
 		// 2. Check if the order exists
 		if (orderIndex === -1) {
@@ -450,6 +450,48 @@ export default class Order {
 		// Adjust the order's total price by subtracting the value of the removed items
 		this.data[orderIndex].total = totalPrice;
 		console.log('Total', this.data[orderIndex].total);
+
+		// Update the individual order in session storage with the new total
+		setDataInSessionStorage('currentOrder', this.data[orderIndex]);
+
+		// Update the entire data array in session storage to reflect the changes
+		setDataInSessionStorage(this.key, this.data);
+
+		return order; // Return the updated order object
+	}
+
+	// Sheng-Yu Wu
+	addOrderItemComment({ order_id, product_id, comment }) {
+		// console.log("TestGetOIDfromBtnID:", product_id);
+		// console.log("TestGetPIDfromBtnID:", product_id);
+		// console.log("New Price:", new_price);
+
+		// Find the index of the order with the specified order_id
+		const orderIndex = this.data.findIndex((order) => order.id === order_id);
+		if (orderIndex === -1) {
+			return 'Order not found'; // Return an error message if no matching order is found
+		}
+		let order = this.data[orderIndex];
+
+		// Find the index of the item with the specified product_id within the found order
+		const itemIndex = order.items.findIndex(
+			(item) => item.product_id === product_id
+		);
+		if (itemIndex === -1) {
+			return 'Item not found in order'; // Return an error message if no matching item is found
+		}
+		let item = order.items[itemIndex];
+
+		// Update item price
+		/*
+		const orgPrice_per_unit = this.data[orderIndex].items[itemIndex].price_per_unit;
+		
+		const quantity = this.data[orderIndex].items[itemIndex].quantity;
+		console.log('quantity', quantity);
+		*/
+		this.data[orderIndex].items[itemIndex].comment = comment;
+
+		console.log('=====This.Data====\n', this.data[orderIndex]);
 
 		// Update the individual order in session storage with the new total
 		setDataInSessionStorage('currentOrder', this.data[orderIndex]);
